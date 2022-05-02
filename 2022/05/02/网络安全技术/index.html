@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="信息安全概述信息和信息安全信息：信息是对事物不确定性的度量，可用信息量来描述 信息技术：应用在信息加工和处理过程中的科学、技术与工程的训练方法和管理技巧及应用 信息安全：使信息资产远离风险的一切手段和方法。 信息安全信息安全的发展历程：  通信安全（上世纪60年代）这个时候一般认为信息安全就是通信安全，研究如何对信息进行编码后在通信信道上传输，从而防止攻击者通过窃听通信信道来获取信息。  信息安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全技术">
+<meta property="og:url" content="http://example.com/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="zuicy的博客">
+<meta property="og:description" content="信息安全概述信息和信息安全信息：信息是对事物不确定性的度量，可用信息量来描述 信息技术：应用在信息加工和处理过程中的科学、技术与工程的训练方法和管理技巧及应用 信息安全：使信息资产远离风险的一切手段和方法。 信息安全信息安全的发展历程：  通信安全（上世纪60年代）这个时候一般认为信息安全就是通信安全，研究如何对信息进行编码后在通信信道上传输，从而防止攻击者通过窃听通信信道来获取信息。  信息安全">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-02T12:44:29.000Z">
+<meta property="article:modified_time" content="2022-05-02T13:38:31.833Z">
+<meta property="article:author" content="zuicyzhu">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="大学课程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/","path":"2022/05/02/网络安全技术/","title":"网络安全技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络安全技术 | zuicy的博客</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zuicy的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">哼</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">信息安全概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%92%8C%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8"><span class="nav-number">1.1.</span> <span class="nav-text">信息和信息安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">信息安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB"><span class="nav-number">1.2.</span> <span class="nav-text">信息安全体系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">安全服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">安全机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%9C%BA%E5%88%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">安全服务和机制之间的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E4%B8%8E%E6%94%BB%E5%87%BB"><span class="nav-number">1.3.</span> <span class="nav-text">安全威胁与攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">安全威胁的种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BB%E5%87%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">攻击</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">网络协议的安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">2.1.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.2.</span> <span class="nav-text">常见拓扑结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.</span> <span class="nav-text">网络协议的安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E5%B1%82%E7%9A%84%E5%A8%81%E8%83%81"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络接口层的威胁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE%EF%BC%88ARP%EF%BC%89%E7%9A%84%E5%A8%81%E8%83%81"><span class="nav-number">2.2.2.</span> <span class="nav-text">地址解析协议（ARP）的威胁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IP%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%A8%81%E8%83%81%E2%80%94%E2%80%94IP%E5%81%87%E5%86%92%E6%94%BB%E5%87%BB%EF%BC%88IP-Spoofing%EF%BC%89"><span class="nav-number">2.2.3.</span> <span class="nav-text">IP层协议的威胁——IP假冒攻击（IP Spoofing）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%A8%81%E8%83%81"><span class="nav-number">2.2.4.</span> <span class="nav-text">传输层协议的威胁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%A8%81%E8%83%81"><span class="nav-number">2.2.5.</span> <span class="nav-text">应用层协议的威胁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9A%94%E7%A6%BB%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">网络安全隔离技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%8A%80%E6%9C%AF"><span class="nav-number">3.1.</span> <span class="nav-text">隔离技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">交换机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VLAN%E5%88%92%E5%88%86%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.1.</span> <span class="nav-text">VLAN划分的方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">路由器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E9%9A%94%E7%A6%BB%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">路由器隔离部署方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">3.4.</span> <span class="nav-text">防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E5%B8%B8%E8%A7%81%E6%8A%80%E6%9C%AF"><span class="nav-number">3.4.1.</span> <span class="nav-text">防火墙的常见技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E8%BF%87%E6%BB%A4"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">分组过滤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E4%BB%A3%E7%90%86"><span class="nav-number">3.4.1.2.</span> <span class="nav-text">应用代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B"><span class="nav-number">3.4.1.3.</span> <span class="nav-text">状态检测</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.2.</span> <span class="nav-text">典型体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.4.3.</span> <span class="nav-text">防火墙的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">3.4.4.</span> <span class="nav-text">局限性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.5.</span> <span class="nav-text">网络地址转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E9%9A%94%E7%A6%BB"><span class="nav-number">3.6.</span> <span class="nav-text">物理隔离</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text">身份认证技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%A6%82%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">身份认证概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%8F%A3%E4%BB%A4%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="nav-number">4.2.</span> <span class="nav-text">基于口令的身份认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="nav-number">4.3.</span> <span class="nav-text">基于对称密码的身份认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="nav-number">4.4.</span> <span class="nav-text">基于公钥密码的身份认证</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zuicyzhu</p>
+  <div class="site-description" itemprop="description">哈</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网络安全技术 | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络安全技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 20:44:29 / 修改时间：21:38:31" itemprop="dateCreated datePublished" datetime="2022-05-02T20:44:29+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="信息安全概述"><a href="#信息安全概述" class="headerlink" title="信息安全概述"></a>信息安全概述</h2><h3 id="信息和信息安全"><a href="#信息和信息安全" class="headerlink" title="信息和信息安全"></a>信息和信息安全</h3><p><strong>信息：</strong>信息是对事物不确定性的度量，可用信息量来描述<br> <strong>信息技术：</strong>应用在信息加工和处理过程中的科学、技术与工程的训练方法和管理技巧及应用<br> <strong>信息安全：</strong>使信息资产远离风险的一切手段和方法。</p>
+<h4 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h4><p><strong>信息安全的发展历程：</strong></p>
+<ul>
+<li><p>通信安全（上世纪60年代）<br>这个时候一般认为信息安全就是通信安全，研究如何对信息进行编码后在通信信道上传输，从而防止攻击者通过窃听通信信道来获取信息。</p></p>
+</li>
+<li><p>信息安全（上世纪80年代）<br>开始采用信息安全及其属性来描述其内涵。提出完整性、可用性、机密性、可靠性、不可否认性，其中机密性、完整性和可用性是信息安全的三个基本目标</p>
+</li>
+<li><p>信息保障（Information Assurance, IA）（上世纪90年代）<br>USDoD提出信息保护过程，保护、检测、恢复、响应（PDRR）</p>
+</li>
+</ul>
+<h3 id="信息安全体系"><a href="#信息安全体系" class="headerlink" title="信息安全体系"></a>信息安全体系</h3><p>**信息安全体系结构：**指对信息和信息系统安全功能的抽象描述，它从整体上定义了信息及信息系统所提供的安全服务、安全机制以及各种安全组件之间的关系和交互。
+
+<p><strong>主要包括内容：</strong></p>
+<ul>
+<li>风险分析（前提）<br>分析信息系统的威胁和脆弱性，分析资源或系统功能失效所带来的影响</li>
+<li>安全策略（核心）<br>适用于安全域（组织的资源集合）的一组规则，规定各种资源的访问权限，主要包括制度、技术、管理。</li>
+<li>安全服务（基础）<br>提供数据处理和数据传输安全性的方法</li>
+<li>安全机制（基础）<br>保护信息与信息系统安全措施的总称，主要有8种：加密机制、数字签名机制、访问控制机制、数据完整性机制、认证交换机制、业务填充机制、路由控制机制、公正机制</li>
+<li>安全管理<br>其中最重要的是安全服务和安全机制，下面分别对其进行详细介绍。</li>
+</ul>
+<h4 id="安全服务"><a href="#安全服务" class="headerlink" title="安全服务"></a>安全服务</h4><p>认证、访问控制、机密性、完整性、否认性</p>
+<h4 id="安全机制"><a href="#安全机制" class="headerlink" title="安全机制"></a>安全机制</h4><p>保护信息与信息系统安全措施的总称，主要有8种：加密机制、数字签名机制、访问控制机制、数据完整性机制、认证交换机制、业务填充机制、路由控制机制、公正机制</p>
+<p><strong>加密机制：</strong><br>为通信业务流信息、数据提供机密性，同时还可以并入其他安全机制中。<br>常用的加密技术主要是 对称加密技术 和 非对称加密技术</p>
+<p><strong>数字签名机制：</strong><br>至少包括两个过程：签名和验证。<br>签名：使用签名者所拥有的私有信息（如私钥）进行操作<br>验证：使用公之于众的规程与信息（如公钥）进行验证</p>
+<p><strong>访问控制机制：</strong><br>保护受保护的资源不被非授权使用。</p>
+<p><strong>数据完整性机制：</strong><br>包括单个数据单元或字段的完整性以及数据单元流或字段流的完整性两方面。<br>一般来说，提供两种完整性服务的机制不相同。</p>
+<p><strong>认证交换机制：</strong><br>在认证者和被认证者之间交换某些共享信息的方式来实现认证功能。比较常用以下几种技术：<br>① 使用鉴别信息，如口令，发送实体提供，接收实体验证。<br>② 密码技术。公钥机制或对称密钥机制。<br>③ 使用该实体的特征或占有物，如认证令牌、指纹、虹膜等</p>
+<p><strong>业务填充机制：</strong><br>通过发送额外的数据来掩盖正常通信流量特征，从而达到保护业务流机密性的目的。<br>这种机制能提供各种不同级别的保护，从而防止对业务流的分析。<br>这种机制只有在业务流填充受到机密服务保护时才有效。</p>
+<p><strong>路由控制机制：</strong><br>指通过对路由过程进行控制，达到安全保护的目的。</p>
+<p><strong>公正机制：</strong><br>利用可信第三方来实现安全功能，要求通信中的所有实体必须完全信任该可信第三方</p>
+<h4 id="安全服务和机制之间的关系"><a href="#安全服务和机制之间的关系" class="headerlink" title="安全服务和机制之间的关系"></a>安全服务和机制之间的关系</h4><p>安全服务和安全机制虽然是截然不同的两个概念，但是两者联系紧密。</p>
+<ul>
+<li>安全服务由安全机制来实现</li>
+<li>一种安全机制可以实现一种或多种安全服务</li>
+<li>一种安全服务可以由一种或多种安全机制来实现</li>
+</ul>
+<h3 id="安全威胁与攻击"><a href="#安全威胁与攻击" class="headerlink" title="安全威胁与攻击"></a>安全威胁与攻击</h3><p>安全威胁是违背安全策略的潜在行为，安全攻击是违背了安全策略，且实际上已经发生的行为。他们之间的关系在于：攻击往往会利用一个或多个威胁。</p>
+<h4 id="安全威胁的种类"><a href="#安全威胁的种类" class="headerlink" title="安全威胁的种类"></a>安全威胁的种类</h4><ul>
+<li>威胁机密性</li>
+<li>威胁完整性</li>
+<li>威胁可用性</li>
+<li>威胁可控性</li>
+</ul>
+<h4 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h4><p><strong>主动攻击</strong></p>
+<ul>
+<li>定义：涉及某些数据流的篡改或虚假流的产生</li>
+<li>特点：<br>易被检测出来<br>不易有效地防止，具体措施包括自动审计、入侵检测和完整性恢复等</li>
+<li>常见手段：<br>假冒，重放，篡改信息，拒绝服务</li>
+</ul>
+<p><strong>被动攻击</strong></p>
+<ul>
+<li>定义：是在未经用户同意和认可的情况下将信息或数据文件泄露给系统攻击者，但不对数据信息做任何修改</li>
+<li>特点：<br>不易被发现<br>重点在于预防 ，如使用虚拟专用网（VPN）、采用加密技术保护网络以及使用加保护的分布式网络等</li>
+<li>常见手段：<br>搭线监听、无线截获、其他截获</li>
+</ul>
+<h2 id="网络协议的安全性"><a href="#网络协议的安全性" class="headerlink" title="网络协议的安全性"></a>网络协议的安全性</h2><h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><p>从资源共享的角度来看，计算机网络是能以相互共享资源的方式互连起来的自治计算机系统的集合，有三个特性：分散性、异构性、自治性<br>从技术角度来说，计算机网络 &#x3D; 通信技术（实现互连互通） + 计算机技术（存储和处理信息）</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p><strong>按传输技术分类</strong></p>
+<ol>
+<li>广播式网络</li>
+<li>点对点网络</li>
+</ol>
+<p><strong>按网络的覆盖范围与规模分类</strong></p>
+<ol>
+<li>局域网LAN</li>
+<li>城域网MAN</li>
+<li>广域网WAN</li>
+</ol>
+<p><strong>按通信技术分类</strong></p>
+<ol>
+<li>有线网络</li>
+<li>无线网络</li>
+</ol>
+<h4 id="常见拓扑结构"><a href="#常见拓扑结构" class="headerlink" title="常见拓扑结构"></a>常见拓扑结构</h4><ol>
+<li>总线型<br>工作站和服务器均挂在一条总线上，地位平等，无中心点控制，公用总线上的信息多以基带形式串行传递，传递方向从发送信息的节点开始向两端扩散。<br>优点：结构简单，可扩充性好<br>缺点：维护难，分支节点故障查找难</li>
+<li>环状<br>由网络中若干节点通过点到点的链路首尾相连形成一个闭合的环，数据在环路中沿着一个方向在各个节点间传输，信息从一个节点传到另一个节点。<br>优点：简化了路径选择，节点控制软件简单。<br>缺点：传输效率低，不便于扩充，可靠性低，维护难</li>
+<li>星状<br>各工作站以星状方式连接成网，网络以中央节点为中心，其他节点与中央节点直接相连，又称为集中控制式网络<br>优点：结构简单，便于管理；控制简单，便于建网；网络延迟时间较小，传输误差较低。<br>缺点：成本高、可靠性较低、资源共享能力也较差。</li>
+<li>树状<br>分级的集中控制式网络<br>优点：通信线路总长度短，成本较低，节点易于扩充，寻找路径比较方便。<br>缺点：叶节点及其相连的线路外，任一节点或其相连的线路故障都会使系统受到影响。</li>
+<li>网状<br>每台设备之间均有点到点的链路连接，这种连接不经济，只有每个站点都频繁发送信息时才使用这种方法。<br>优点：系统可靠性高，容错能力强<br>缺点：连接不经济，每台设备之间均有点到点的链路连接；安装复杂</li>
+<li>无线通信与卫星通信网络结构<br>也称为蜂窝网络拓扑结构，以无线传输介质（红外、微波等）点到点和多点传输为特征，是一种无线网，适用于城市网、校园网、企业网。</li>
+</ol>
+<h3 id="网络协议的安全问题"><a href="#网络协议的安全问题" class="headerlink" title="网络协议的安全问题"></a>网络协议的安全问题</h3><p>互联网设计之初的使用目的是用于科学研究，其基本假设就是节点的诚实性；但由于计算机网络的广泛使用，这种假设在今天已经无法成立，因此可能导致各种各样的攻击。</p>
+<p>这些攻击主要针对两方面的缺陷：<br><strong>1.协议设计的缺陷</strong>，这种攻击会一直存在，直至该协议更新；<br><strong>2.协议实现的缺陷</strong>，这种攻击会随着软件的更新而消除</p>
+<h4 id="网络接口层的威胁"><a href="#网络接口层的威胁" class="headerlink" title="网络接口层的威胁"></a>网络接口层的威胁</h4><p><strong>交换机毒化攻击</strong></p>
+<p><strong>原因：</strong>交换表的空间是有限的，新的“MAC地址——端口”映射对的到达会替换旧的表项。</p>
+<p><strong>操作：</strong><br>1.攻击者发送大量的具有不同伪造源MAC地址的帧<br>2.由于交换机的自学习功能，这些新的“MAC地址—端口”映射对会填充整个交换机表，而这些表项都是无效的<br>3.交换机完全退化为广播模式，攻击者达到窃听数据的目的。</p>
+<h4 id="地址解析协议（ARP）的威胁"><a href="#地址解析协议（ARP）的威胁" class="headerlink" title="地址解析协议（ARP）的威胁"></a>地址解析协议（ARP）的威胁</h4><p><strong>ARP攻击过程如下：</strong><br>1.攻击者在局域网网段发送虚假的IP&#x2F;MAC对应信息，篡改网关MAC地址，使自己成为假网关<br>2.受害者将数据包发送给假网关（攻击者）<br>3.假网关（攻击者）分析接收到的数据包，把有价值的数据包记录下来（比如QQ以及邮箱登录数据包）<br>4.假网关再把数据包转发给真正的网关</p>
+<p><strong>发生ARP欺骗的原因：</strong><br>1.ARP协议设计之初没有考虑安全问题，所以任何计算机都可以发送虚假的ARP数据包。<br>2.ARP协议的无状态性。响应数据包和请求数据包之间没有什么关系，如果主机收到一个ARP响应却无法知道是否真的发送过对应的ARP请求。<br>3.ARP缓存需要定时更新，给攻击者以可乘之机。</p>
+<p><strong>ARP欺骗的局限性：</strong><br>ARP欺骗只能被用于局域网（也就是说黑客必须已经获得局域网中某台机子的访问权限。）</p>
+<h4 id="IP层协议的威胁——IP假冒攻击（IP-Spoofing）"><a href="#IP层协议的威胁——IP假冒攻击（IP-Spoofing）" class="headerlink" title="IP层协议的威胁——IP假冒攻击（IP Spoofing）"></a>IP层协议的威胁——IP假冒攻击（IP Spoofing）</h4><p>根据IP协议，路由器只是根据IP分组的目的IP地址来确定该IP分组从哪一个端口发送的，而不关心该IP分组的源IP<br>地址。基于该原理，任意节点均可以构造IP分组，即使其源IP地址并非当前结点的IP地址，该IP分组仍然能够顺利到达目的结点，即IP假冒攻击（IP Spoofing）</p>
+<p>IP假冒攻击主要用于两类网络攻击：<br><strong>1.拒绝服务攻击DOS</strong><br><strong>2.基于IP地址认证的网络服务攻击</strong></p>
+<p>防范IP假冒攻击的方法：<br><strong>1.入口&#x2F;出口过滤</strong><br><strong>2.IP回溯技术</strong></p>
+<h4 id="传输层协议的威胁"><a href="#传输层协议的威胁" class="headerlink" title="传输层协议的威胁"></a>传输层协议的威胁</h4><p><strong>TCP</strong></p>
+<ol>
+<li>SYN Flooding 攻击</li>
+<li>ACK Flooding 攻击</li>
+<li>序列号预测攻击</li>
+<li>LAND攻击</li>
+</ol>
+<p><strong>UDP</strong></p>
+<ol>
+<li>UDP假冒</li>
+<li>UDP劫持</li>
+</ol>
+<h4 id="应用层协议的威胁"><a href="#应用层协议的威胁" class="headerlink" title="应用层协议的威胁"></a>应用层协议的威胁</h4><p><strong>1.DNS</strong></p>
+<p><strong>DNS缓存毒化</strong><br>    攻击者掌控有一个自己的域（attack.net）和一个已被攻陷的DNS服务器（ns.attack.net）。攻击者通过查询<a target="_blank" rel="noopener" href="http://www.attack.net,迫使本地域名服务器a和ns.attack.net通信,并使ns.attack.net回复针对/">www.attack.net，迫使本地域名服务器A和ns.attack.net通信，并使ns.attack.net回复针对</a>    <a target="_blank" rel="noopener" href="http://www.attack.net的查询,同时通过区域传送(zone/">www.attack.net的查询，同时通过区域传送（zone</a> transfer）的方式将错误的或篡改过的DNS信息（如，<a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a> &#x3D; 91.91.91.91）返回给本地域名服务器A。当其他用户向域名服务器A查询           <a target="_blank" rel="noopener" href="http://www.google.com时,服务器会返回91.91.91.91./">www.google.com时，服务器会返回91.91.91.91。</a></p>
+<p><strong>DNS ID欺骗</strong><br>    DNS协议基于无状态的UDP，因此任何攻击者都可以发送伪造的响应包给请求者，而请求者无法判断该包是否合法。<br>    如果攻击者能够窃听到该DNS请求，比如攻击者和被攻击者在同一局域网，则攻击者能够获得DNS查询的ID号，从而可以构造合法的响应包，而其中的域名解析内容则是由攻击者来任意确定的。</p>
+<p><strong>基于DNS的DDOS攻击</strong><br>    攻击者利用僵尸网络发送大量伪造的查询请求至DNS服务器。这些查询请求包的源IP地址被设置为受害者的IP地址，因此DNS服务器会把响应信息发送给受害者。大量的响应信息会导致被攻击者的处理能力被占     用，从而形成DOS</p>
+<p><strong>2.HTTP</strong></p>
+<p><strong>钓鱼攻击</strong><br>    HTTP没有考虑用户认证，也就是说，用户并不能确定远端服务器的真实身份。</p>
+<p><strong>跨站脚本攻击（XSS）</strong></p>
+<h2 id="网络安全隔离技术"><a href="#网络安全隔离技术" class="headerlink" title="网络安全隔离技术"></a>网络安全隔离技术</h2><h3 id="隔离技术"><a href="#隔离技术" class="headerlink" title="隔离技术"></a>隔离技术</h3><p>对具有不同安全需求的应用系统进行分类保护，从而有助于将风险较大的应用系统与其他需要更多安全保护的应用系统隔离，达到保护的目的。</p>
+<p>常见的隔离类型：<br><strong>逻辑隔离</strong><br><strong>物理隔离</strong></p>
+<h3 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h3><p>虚拟子网:即VLAN（Virtual Local Area Network），是一种通过将局域网内的设备逻辑地而不是物理地划分成一个个网段从而实现虚拟工作组的新兴技术。连接在同一交换机上的主机可以通过VLAN划分到不同的虚拟子网，也就是不同的广播域。通过VLAN的构建能够更有效的对局域网的数据进行隔离。</p>
+<h4 id="VLAN划分的方式"><a href="#VLAN划分的方式" class="headerlink" title="VLAN划分的方式"></a>VLAN划分的方式</h4><p><strong>基于端口划分</strong><br><strong>优点：</strong>简单，一次定义；<strong>缺点：</strong>灵活性差</p>
+<p><strong>基于MAC地址划分</strong><br><strong>优点：</strong>支持用户动态迁移；<strong>缺点：</strong>配置工作量大，执行效率低</p>
+<p><strong>基于IP层划分</strong><br>支持用户动态迁移，可按协议类型划分；<strong>缺点：</strong>效率低，需要交换机支持</p>
+<p><strong>基于IP组播划分</strong><br><strong>优点：</strong>可通过路由器扩展，支持广域网；<strong>缺点：</strong>效率低，不适合局域网</p>
+<h3 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h3><h4 id="路由器隔离部署方式"><a href="#路由器隔离部署方式" class="headerlink" title="路由器隔离部署方式"></a>路由器隔离部署方式</h4><p><strong>1. 路由器作为唯一安全组件</strong></p>
+<ul>
+<li>相对交换机，集线器，能提供更高层次的安全功能</li>
+<li>包过滤，NAT等<br><strong>2. 路由器作为安全组件的一部分</strong></li>
+<li>在一个全面安全体系结构中，常用作屏蔽设备，执行包过滤功能，而防火墙对能够通过路由器的数据包进行检查</li>
+</ul>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><p><strong>定义：</strong>防火墙是用一个或一组网络设备，在两个或多个网络间加强访问控制，以保护一个网络不受到另一个网络攻击的安全技术。</p>
+<p><strong>主要技术：</strong>分组过滤、应用代理、状态检测</p>
+<h4 id="防火墙的常见技术"><a href="#防火墙的常见技术" class="headerlink" title="防火墙的常见技术"></a>防火墙的常见技术</h4><h5 id="分组过滤"><a href="#分组过滤" class="headerlink" title="分组过滤"></a>分组过滤</h5><p>分组过滤也被称为包过滤，通常根据数据包头信息对网络流量进行处理，一般只关注源地址和目的地址、应用、协议以及每个IP包的端口，位于网络层，过滤依据主要是IP报头里面的信息，不能对应用层数据进行处理。</p>
+<p><strong>优点：</strong><br>1.容易实现，费用少，对性能的影响不大，对流量的管理较出色</p>
+<p><strong>缺点：</strong><br>1.过滤规则表随着应用的深化会很快变得很大而且复杂，出现漏洞的可能性也会增加。<br>2.包过滤技术只对数据包头进行检查，没有身份验证机制，因此不能分辨正常用户和入侵者。<br>3.包过滤技术不能进行应用层的深度检查，因此不能发现传输的恶意代码及攻击数据包。<br>4.包过滤技术容易遭受源地址欺骗，源地址改为内部地址可以绕过包过滤防火墙。</p>
+<h5 id="应用代理"><a href="#应用代理" class="headerlink" title="应用代理"></a>应用代理</h5><p>应用代理防火墙又被称为“堡垒主机”、“代理网关”、“应用级网关”、“代理服务器”，位于应用层，主要采用协议代理服务。<br>应用代理防火墙适用于特定的Internet服务，如HTTP、FTP等，必须为每一种应用服务设置专门的代理服务器。<br>（基本可以直接理解成代理服务器了。）</p>
+<p><strong>优点：</strong><br>1.比起分组过滤防火墙，应用代理防火墙能够提供更高层次的安全性。<br>2.应用代理防火墙将保护网络与外界完全隔离。并提供更细致的日志，有助于发现异常。<br>3.应用代理防火墙本身是一台主机，可以执行诸如身份验证等功能。<br>4.应用代理防火墙检测的深度更深，能够进行应用级的过滤。例如，有的应用代理防火墙可以过滤FTP连接并禁止FTP的“put”命令，从而保证用户不能往匿名FTP服务器上写入数据。</p>
+<p><strong>缺点：</strong><br>1.应用代理防火墙工作在OSI模型最高层，因此开销较大。<br>2.对每项服务必须使用专门设计的代理服务器。应用代理防火墙通常支持常用的协议，例如：HTTP，FTP，Telnet等等，但不能支持所有的应用层协议。<br>3.应用代理防火墙配置的方便性较差，对用户不透明。例如使用HTTP代理，需要用户配置自己的IE，从而使之指向代理服务器。</p>
+<h5 id="状态检测"><a href="#状态检测" class="headerlink" title="状态检测"></a>状态检测</h5><p>状态检测技术是一种基于连接的状态检测机制，将属于同一连接的所有包作为一个整体的数据流看待，构成连接状态表，通过规则表与状态表的共同配合，对表中的各个连接状态因素加以识别。</p>
+<p><strong>特点：</strong><br>比分组过滤技术安全性高，比应用代理技术效率高。</p>
+<h4 id="典型体系结构"><a href="#典型体系结构" class="headerlink" title="典型体系结构"></a>典型体系结构</h4><ul>
+<li>包过滤路由器模型</li>
+<li>单宿主堡垒主机模型</li>
+<li>双宿主堡垒主机模型</li>
+<li>子网屏蔽防火墙模型</li>
+</ul>
+<h4 id="防火墙的作用"><a href="#防火墙的作用" class="headerlink" title="防火墙的作用"></a>防火墙的作用</h4><ul>
+<li>通过过滤不安全的服务而降低风险，提高内部网络安全性</li>
+<li>保护网络免受基于路由的攻击</li>
+<li>强化网络安全策略</li>
+<li>对网络存取和访问进行监控审计</li>
+<li>利用防火墙对内部网络的划分，实现内部网重点或敏感网段的隔离</li>
+</ul>
+<h4 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h4><ul>
+<li>防火墙无法检测不经过防火墙的流量，如通过内部提供拨号服务接入公网的流量；</li>
+<li>防火墙不能防范来自内部人员恶意的攻击；</li>
+<li>防火墙不能阻止被病毒感染的和有害的程序或文件的传递，如木马；</li>
+<li>防火墙不能防止数据驱动式攻击，如一些缓冲区溢出攻击</li>
+</ul>
+<h3 id="网络地址转换"><a href="#网络地址转换" class="headerlink" title="网络地址转换"></a>网络地址转换</h3><p>网络地址转换（Network Address Translation, NAT）允许一个机构以一个地址出现在Internet上，将每个局域网节点的地址转换成一个IP地址，反之亦然。</p>
+<p><strong>静态转换</strong><br>是指将内部网络的私有IP地址与公有IP地址进行一一对应的转换。</p>
+<p><strong>动态转换</strong><br>是指将内部网络的私有IP地址转换为公用IP地址时，IP地址是不确定的，是随机的。</p>
+<p><strong>网络地址端口转换</strong><br>是指改变外出数据包的源端口并进行端口转换，内部网络的所有主机均可共享一个合法外部IP地址实现对Internet的访问，从而可以最大限度地节约IP地址资源。</p>
+<h3 id="物理隔离"><a href="#物理隔离" class="headerlink" title="物理隔离"></a>物理隔离</h3><p><strong>定义：</strong>“物理隔离”是指内部网在任何情况下不得直接或间接地连接公共网。<br>（前面我们提到的都是逻辑隔离）</p>
+<p><strong>类型</strong></p>
+<p>1.双网双机<br>两台计算机共用一套外部设备，通过开关选择两套计算机系统。</p>
+<p>2.双硬盘物理隔离卡<br>通过增加一块隔离卡、一块硬盘，将硬盘接口通过添加的隔离卡转接到主板，网卡也通过该卡引出两个网络接口。</p>
+<p>3.单硬盘物理隔离<br>增加一块隔离卡，引出两个网口，并对原有硬盘划分安全区、非安全区。（非严格的物理隔离）</p>
+<p>4.隔离网关（网闸）<br>内、外部主机是完全网络隔离的，支持文件、数据或信息的交换。</p>
+<p><strong>实现方式：</strong><br>物理隔离是通过物理隔离部件来实现的。<br>物理隔离部件（physical disconnection separation components）是在端上实现信息物理断开的信息安全部件，如物理隔离卡，网闸。<br>隔离部件的工作方式通常有：单向隔离、协议隔离、网闸隔离</p>
+<p><strong>物理隔离和逻辑隔离的区别：</strong></p>
+<p>1.物理隔离的哲学是要安全就不连网，要绝对保证安全。</p>
+<p>2.逻辑隔离的哲学是在保证网络正常使用下，尽可能安全。</p>
+<p>3.物理隔离部件的安全功能应保证被隔离的计算机资源不能被访问（至少应包括硬盘、软盘和光盘），计算机数据不能被重用（至少应包括内存）。</p>
+<hr>
+<h2 id="身份认证技术"><a href="#身份认证技术" class="headerlink" title="身份认证技术"></a>身份认证技术</h2><h3 id="身份认证概述"><a href="#身份认证概述" class="headerlink" title="身份认证概述"></a>身份认证概述</h3><p><strong>定义：</strong><br>身份认证是证实主体的真实身份与其所声称的身份是否相符的过程，身份认证可分为用户（代表用户的进程）与主机间的认证和主机与主机之间的认证。</p>
+<p><strong>目的：</strong><br>确保通信实体就是它所声称的那个实体</p>
+<p><strong>作用：</strong></p>
+<p>1.验证用户，对抗假冒</p>
+<p>2.依据身份，实施控制</p>
+<p>3.明确责任，便于审计</p>
+<p><strong>认证的方式：</strong></p>
+<p>1.基于口令</p>
+<p>2.基于密码学</p>
+<p>3.基于生物特征</p>
+<p><strong>认证的依据：</strong></p>
+<p>1.主体所知的秘密 What you know 如口令、密钥</p>
+<p>2.主体所有的实物 What you have 如手机、智能卡</p>
+<p>3.主体固有的特征 Who you are 如指纹、视网膜</p>
+<p><strong>认证的类型：</strong></p>
+<p>1.依据认证条件（凭据）的数量</p>
+<p>a.单因子认证<br>  b.双因子认证<br>  c.多因子认证</p>
+<p>2.依据认证条件（凭据）的状态</p>
+<p>a.静态认证<br>b.动态认证</p>
+<h3 id="基于口令的身份认证"><a href="#基于口令的身份认证" class="headerlink" title="基于口令的身份认证"></a>基于口令的身份认证</h3><p>（待续）</p>
+<h3 id="基于对称密码的身份认证"><a href="#基于对称密码的身份认证" class="headerlink" title="基于对称密码的身份认证"></a>基于对称密码的身份认证</h3><p>（待续）</p>
+<h3 id="基于公钥密码的身份认证"><a href="#基于公钥密码的身份认证" class="headerlink" title="基于公钥密码的身份认证"></a>基于公钥密码的身份认证</h3><p>（待续）<br><strong>未完待续</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+              <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" rel="tag"># 大学课程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/" rel="prev" title="WPA2密钥重装攻击">
+                  <i class="fa fa-chevron-left"></i> WPA2密钥重装攻击
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="next" title="计算机网络">
+                  计算机网络 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

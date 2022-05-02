@@ -2,9 +2,10 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,14 +14,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="哈">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="哈">
 <meta property="og:type" content="website">
 <meta property="og:title" content="zuicy的博客">
 <meta property="og:url" content="http://example.com/index.html">
@@ -30,72 +30,46 @@
 <meta property="article:author" content="zuicyzhu">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://example.com/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>zuicy的博客</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>zuicy的博客</title>
   
 
 
 
 
-
-
+<link rel="dns-prefetch" href="comments.zuicy.party">
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">zuicy的博客</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">哼</p>
   </div>
@@ -108,19 +82,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
   </ul>
 </nav>
 
@@ -128,136 +91,18 @@
 
 
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
+        
   
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/%E5%A6%82%E4%BD%95%E5%9C%A8chromeos%E4%B8%8A%E4%BD%BF%E7%94%A8shadowsocks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zuicyzhu">
-      <meta itemprop="description" content="哈">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zuicy的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/02/%E5%A6%82%E4%BD%95%E5%9C%A8chromeos%E4%B8%8A%E4%BD%BF%E7%94%A8shadowsocks/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-02 16:56:11 / 修改时间：17:37:37" itemprop="dateCreated datePublished" datetime="2022-05-02T16:56:11+08:00">2022-05-02</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[toc]<br>众所周知 chromeos 大量使用场景都是需要 ss，一般来说有几个方案</p>
-<h3 id="一-ss-chromeapp（不推荐）"><a href="#一-ss-chromeapp（不推荐）" class="headerlink" title="一.ss-chromeapp（不推荐）"></a>一.ss-chromeapp（不推荐）</h3><p>chromeos app 商店就可以下载到 ss-chromeapp 客户端，配合chrome插件 proxy switchOmega，基本就可以达到90%的效果了。为什么是90%呢？因为这只能让你在访问网页的时候生效，对于下载的安卓app是无效的。而且由于未知原因无法支持chromeos自带的google drive。没有google drive的chromebook是木得灵魂的不是吗。同时ss-chromeapp没有很好的后台提示，经常会莫名其妙被杀后台。</p>
-<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN" title="Proxy SwitchyOmega">Proxy SwitchyOmega</a><br><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/shadowsocks/fnhhahhihediajgefcnlpdmnogndblbi?hl=zh-CN" title="ss-chromeapp">ss-chromeapp</a><br><img src="https://picture.zuicy.party/imgs/2019/05/d96613966d55d3dd.png"></p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ol>
-<li>进入SwitchyOmega选项，点击左边栏新建情景模式，名称自选，选择代理服务器模式。</li>
-<li>设置刚刚新建的情景模式，选择代理协议SOCK5，代理服务器为本地地址127.0.0.1，端口与SS的本地代理端口相同，默认为1080。</li>
-<li>保存后再次新建，选择自动切换模式，规则列表规则选之前配置好的SS，规则列表格式选AutoProxy，规则列表网址，填 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a> ，然后点立即更新情景模式。正文中出现地址列表即为成功。</li>
-<li>需要科学上网时选择刚刚这个自动切换模式即可。<br>也可以参考这一篇github上的教程<a target="_blank" rel="noopener" href="https://github.com/FelisCatus/SwitchyOmega/wiki/GFWList#%E6%9B%B4%E6%96%B0%E8%A7%84%E5%88%99%E5%88%97%E8%A1%A8" title="SwitchyOmega 配合 GFWList 使用">SwitchyOmega 配合 GFWList 使用</a></li>
-</ol>
-<h3 id="二-dev模式（不推荐）"><a href="#二-dev模式（不推荐）" class="headerlink" title="二.dev模式（不推荐）"></a>二.dev模式（不推荐）</h3><p>开启 dev 模式，安装 python 的 ss 客户端。这个就没什么好说的了。linux下ss的教程一搜一大堆了。</p>
-<h3 id="三-使用安卓版的ss客户端（推荐）"><a href="#三-使用安卓版的ss客户端（推荐）" class="headerlink" title="三.使用安卓版的ss客户端（推荐）"></a>三.使用安卓版的ss客户端（推荐）</h3><ul>
-<li>首先你的 chromeos 必须支持 play 商店安装安卓应用。<br>1.想办法从play商店上下载shadowsocks，并配置。<br>2.在 chrome 地址栏输入 chrome:&#x2F;&#x2F;flags#arc-vpn 改为 Enabled这时候点右下角弹出的窗口可以看到 vpn 连接已经激活了。并且可实现全应用覆盖。具体的规则也和安卓版本一样，可以自行设定。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -266,48 +111,768 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">zuicyzhu</p>
   <div class="site-description" itemprop="description">哈</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">1</span>
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
 
 
 
+        </div>
       </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
-        
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/LaTeX-Visual-Studio-Code%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/02/LaTeX-Visual-Studio-Code%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">LaTeX+Visual Studio Code安装教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 21:13:33 / 修改时间：21:39:07" itemprop="dateCreated datePublished" datetime="2022-05-02T21:13:33+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">工具教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/LaTeX-Visual-Studio-Code%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/LaTeX-Visual-Studio-Code%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>本文基于texlive2019和vscode2019进行安装配置。</p>
+<h2 id="关于-LaTeX"><a href="#关于-LaTeX" class="headerlink" title="关于 LaTeX"></a>关于 LaTeX</h2><p>LaTeX是一种基于ΤΕΧ的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发，利用这种格式，即使使用者没有排版和程序设计的知识也可以充分发挥由TeX所提供的强大功能，能在几天，甚至几小时内生成很多具有书籍质量的印刷品。对于生成复杂表格和数学公式，这一点表现得尤为突出。因此它非常适用于生成高印刷质量的科技和数学类文档。</p>
+<p>TeX Live 是 TUG (TeX User Group) 维护和发布的 TeX 系统，可说是「官方」的 TeX 系统。我们推荐任何阶段的 TeX 用户，都尽可能使用 TeX Live，以保持在跨操作系统平台、跨用户的一致性。</p>
+<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><p>Visual Studio Code (简称 VS Code &#x2F; VSC) 是一款免费开源的现代化轻量级代码编辑器，支持几乎所有主流的开发语言的语法高亮、智能代码补全、自定义快捷键、括号匹配和颜色区分、代码片段、代码对比 Diff、GIT命令 等特性，支持插件扩展，并针对网页开发和云端应用开发做了优化。软件跨平台支持 Win、Mac 以及 Linux。</p>
+<h1 id="TeXLive的下载及安装"><a href="#TeXLive的下载及安装" class="headerlink" title="TeXLive的下载及安装"></a>TeXLive的下载及安装</h1><p>1.texlive的下载可以在<a target="_blank" rel="noopener" href="http://tug.org/texlive/">官网</a>或者国内的镜像网站上下载。</p>
+<p>2.这里以官网的镜像安装为例，首先点击on DVD。</p>
+<p>3.然后如下图选择下载镜像文件。<br>4.这里可以如下图一样选择之后下载，也可以根据自的喜好选择torrent等下载方式。</p>
+<p>5.texlive2018.iso下载完毕后，将文件解压或使用DVD驱动器打开ISO镜像，然后双击 <code>install-tl-advanced.bat</code> 进行安装。安装的界面如下图所示，如果有特殊要求，可自行更改，最后点击安装即可。安装过程比较慢，大概四十分钟到一个小时的样子。</p>
+<h1 id="vscode的下载及配置"><a href="#vscode的下载及配置" class="headerlink" title="vscode的下载及配置"></a>vscode的下载及配置</h1><p>1.微软爸爸的东西直接在<a target="_blank" rel="noopener" href="https://code.visualstudio.com/" title="官网">官网</a>上点击下载安装就行了，都很方便。<br>2.安装完成后在下图的地方搜索latex workshop进行下载（ctrl+shift+x也可以），这里如果不习惯英文还可以搜索Chinese下载中文语言包。<br>3.因为中文编译一般使用xlatex，但是这里默认的并不是，所以我们还要在settings.json中更改设置。具体的方法为在设置-扩展-latex中随便找到一个<code>在settings.json中编辑</code>即可。</p>
+<p>4.更改配置文件如下，保存。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;latex-workshop.latex.recipes&quot;: [&#123;</span><br><span class="line">  &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">  &quot;tools&quot;: [</span><br><span class="line">      &quot;xelatex&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  &quot;name&quot;: &quot;latexmk&quot;,</span><br><span class="line">  &quot;tools&quot;: [</span><br><span class="line">      &quot;latexmk&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;pdflatex -&gt; bibtex -&gt; pdflatex*2&quot;,</span><br><span class="line">  &quot;tools&quot;: [</span><br><span class="line">      &quot;pdflatex&quot;,</span><br><span class="line">      &quot;bibtex&quot;,</span><br><span class="line">      &quot;pdflatex&quot;,</span><br><span class="line">      &quot;pdflatex&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;xelatex-xelatex&quot;,</span><br><span class="line">  &quot;tools&quot;: [</span><br><span class="line">      &quot;xelatex&quot;,</span><br><span class="line">      &quot;xelatex&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line">&quot;latex-workshop.latex.tools&quot;: [&#123;</span><br><span class="line">&quot;name&quot;: &quot;latexmk&quot;,</span><br><span class="line">&quot;command&quot;: &quot;latexmk&quot;,</span><br><span class="line">&quot;args&quot;: [</span><br><span class="line">  &quot;-synctex=1&quot;,</span><br><span class="line">  &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">  &quot;-file-line-error&quot;,</span><br><span class="line">  &quot;-pdf&quot;,</span><br><span class="line">  &quot;%DOCFILE%&quot;</span><br><span class="line">]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">&quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">&quot;command&quot;: &quot;xelatex&quot;,</span><br><span class="line">&quot;args&quot;: [</span><br><span class="line">  &quot;-synctex=1&quot;,</span><br><span class="line">  &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">  &quot;-file-line-error&quot;,</span><br><span class="line">  &quot;%DOCFILE%&quot;</span><br><span class="line">]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">&quot;name&quot;: &quot;pdflatex&quot;,</span><br><span class="line">&quot;command&quot;: &quot;pdflatex&quot;,</span><br><span class="line">&quot;args&quot;: [</span><br><span class="line">  &quot;-synctex=1&quot;,</span><br><span class="line">  &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">  &quot;-file-line-error&quot;,</span><br><span class="line">  &quot;%DOCFILE%&quot;</span><br><span class="line">]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">&quot;name&quot;: &quot;bibtex&quot;,</span><br><span class="line">&quot;command&quot;: &quot;bibtex&quot;,</span><br><span class="line">&quot;args&quot;: [</span><br><span class="line">  &quot;%DOCFILE%&quot;</span><br><span class="line">]</span><br><span class="line">&#125;],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的recipes是编译方法，可以根据自己的需要进行更改。<br>同时根据自己的需要还可以增加如下语句</p>
+<p><code>&quot;latex-workshop.view.pdf.viewer&quot;: &quot;tab&quot;</code>指定默认的pdf阅读器为tab</p>
+<p><code>&quot;latex-workshop.latex.clean.enabled&quot;: false， &quot;latex-workshop.latex.autoClean.run&quot;: &quot;never&quot;</code>关闭自动清理功能，因为有些有目录的模板需要多次编译，如果打开的话每次编译完就只会有pdf文档。</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>新建一个tex文件，输入测试代码</p>
+<pre><code>%基本格式
+\documentclass&#123;article&#125;
+\begin&#123;document&#125;
+hello, world
+\end&#123;document&#125;
+</code></pre>
+<p>点击编译或ctrl+s保存自动编译，可以看到已经可以使用了，Happy Latexing！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/" class="post-title-link" itemprop="url">python实现多表代换加密与解密</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 21:04:39 / 修改时间：21:39:31" itemprop="dateCreated datePublished" datetime="2022-05-02T21:04:39+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="一、原理-toc"><a href="#一、原理-toc" class="headerlink" title="一、原理 [toc]"></a>一、原理 [toc]</h1><h2 id="什么是多表代换？"><a href="#什么是多表代换？" class="headerlink" title="什么是多表代换？"></a>什么是多表代换？</h2><p>多表代换加密是相对于单表代换加密而言的，</p>
+<p>单表代换是密码学中最基础的一种加密方式。在加密时用一张自制字母表上的字母来代替明文上的字母（比如说A——Z，B——D）来达到加密。移位密码也属于单表代换，只不过比较有规律，相当于集体向前或向后。</p>
+<p>这种加密方法最容易被破解。破解方法为统计法。在英语中，最常用的字母为E，所以在密文中代替E 的字母出现的频率也最高，由此便可破解。为了增加破译密码的难度，对于位于不同位置的同一个明文参考不同的代替表来进行替代，这样同一个明文所对应的密文也可能会是不一样的。就大大增加了破译的难度。</p>
+<h2 id="多表代换的数学表示"><a href="#多表代换的数学表示" class="headerlink" title="多表代换的数学表示"></a>多表代换的数学表示</h2><p>密钥为k,明文为m，加密为c，则有加密变换ek(m)&#x3D;c1c2…cn，其中，ci&#x3D;mi+ki mod q。</p>
+<h1 id="二、实例"><a href="#二、实例" class="headerlink" title="二、实例"></a>二、实例</h1><h2 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h2><p>在一个凯撒密码中，字母表中的每一字母都会作一定的偏移，例如偏移量为3时，A就转换为了D、B转换为了E……而维吉尼亚密码则是由一些偏移量不同的恺撒密码组成。</p>
+<p>为了生成密码，需要使用表格法。这一表格（如图1所示）包括了26行字母表，每一行都由前一行向左偏移一位得到。具体使用哪一行字母表进行编译是基于密钥进行的，在过程中会不断地变换。<br>例如，假设明文为：</p>
+<p>ATTACKATDAWN</p>
+<p>选择某一关键词并重复而得到密钥，如关键词为LEMON时，密钥为：</p>
+<p>LEMONLEMONLE</p>
+<p>字母表如下：<br><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=46f7e2acda88d43fe4a499a01c77b97e/58ee3d6d55fbb2fbf9e21dcb434a20a44723dc1a.jpg" alt="字母表" title="密码表"></p>
+<p>对于明文的第一个字母A，对应密钥的第一个字母L，于是使用表格中L行字母表进行加密，得到密文第一个字母L。类似地，明文第二个字母为T，在表格中使用对应的E行进行加密，得到密文第二个字母X。以此类推，可以得到：</p>
+<p>明文：ATTACKATDAWN密钥：LEMONLEMONLE密文：LXFOPVEFRNHR</p>
+<p>解密的过程则与加密相反。例如：根据密钥第一个字母L所对应的L行字母表，发现密文第一个字母L位于A列，因而明文第一个字母为A。密钥第二个字母E对应E行字母表，而密文第二个字母X位于此行T列，因而明文第二个字母为T。以此类推便可得到明文。</p>
+<p>用数字0-25代替字母A-Z，维吉尼亚密码的加密文法可以写成同余的形式：</p>
+<p><img src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D168/sign=c4b688b259fbb2fb302b5c14774b2043/b7003af33a87e950a87273831c385343faf2b4fc.jpg"></p>
+<p>解密方法则能写成：<br><img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D168/sign=b86be9bf38a85edffe8cfa25715509d8/f9dcd100baa1cd1176d1f2cfb512c8fcc2ce2dfd.jpg"></p>
+<h2 id="博福特密码"><a href="#博福特密码" class="headerlink" title="博福特密码"></a>博福特密码</h2><p>博福特密码，是一种类似于维吉尼亚密码的替代密码，由弗朗西斯·蒲福（Francis Beaufort）发明。它最知名的应用是M-209密码机。博福特密码属于对等加密，即加密演算法与解密演算法相同。</p>
+<p>它是按mod q减法运算的一种周期代替密码。即 ci+td&#x3D;δi(mi+td)≡(ki-mi+td)(mod q)</p>
+<p>所以，它和维吉尼亚密码类似，以ki为密钥的代替表是密文字母表为英文字母表逆序排列进行循环右移ki+1次形成的。例如，若ki&#x3D;3(相当于字母D)，则明文和密文的对应关系如下：</p>
+<p> 明文：a b c d e f g h i j k l m n o p q r s t u v w x y z </p>
+<p> 密文：D C B A Z Y X W V U T S R Q P O N M L K J I H G F E</p>
+<p>显然，博福特密码的解密变换为 mi+td≡δi(ci+td)≡(ki-ci+td)(modq)</p>
+<p>因此，博福特密码的解密变换与加密变换相同。按博福特密码，以密钥ki加密相当于按下式的维吉尼亚加密：ci+td≡ <a href="modq">(q-1)-mi+td</a></p>
+<p>若按下式加密：  ci+td≡(mi+td-ki)(modq)就得到变异的博福特密码，相应代替表示将明文字母表循环右移ki次而成。由于循环右移ki次等于循环左移(q-ki)次，即式ci+td≡(mi+td- ki)<br>(modq)等价于以(q-ki)为密钥的维吉尼亚密码。所以维吉尼亚密码和变异的博福特密码互为逆变换，若一个是加密运算，则另一个就是解密运算。</p>
+<h1 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h1><h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="1-秘钥生成"><a href="#1-秘钥生成" class="headerlink" title="1.秘钥生成"></a>1.秘钥生成</h3><p>（1）随机生成3ⅹ3可逆矩阵A，计算其行列式并模去26，若其行列式等于零或与26不互素，则重新生成矩阵。矩阵生成后，再计算其在模26下的逆矩阵。</p>
+<p>（2）生成3维向量B作为秘密密钥 。</p>
+<h3 id="2-加密"><a href="#2-加密" class="headerlink" title="2.加密"></a>2.加密</h3><p>（1）输入一段英文，将其转变成0~25之间的整数，并将这些整数分为3个一组；</p>
+<p>（2）对于<img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164833730.png"> ，计算<br><img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164833799.png"></p>
+<p>（3）重复（2）直到所有的字母都加密完毕。</p>
+<h3 id="3-解密"><a href="#3-解密" class="headerlink" title="3.解密"></a>3.解密</h3><p>（1）读入密文，将其转变成0~25之间的整数，并将这些整数分为3个一组；</p>
+<p>（2）对于<img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164916241.png"> ，计算<br><img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164916244.png"></p>
+<p>（3）重复（2）直到所有的字母都解密完毕。</p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><pre><code># -- coding: utf-8 --
+import numpy as np
+from numpy.linalg import *
+import sys
+
+# 矩阵取摸
+def my_int_inv(mat, n=26):
+    x = np.zeros(mat.shape, dtype=np.int16)
+    for i in range(mat.shape[0]):
+        for j in range(mat.shape[1]):
+            x[i, j] = int(round(mat[i, j])) % n
+    return x
+
+# 欧几里德算法
+def gcd(a, b):
+    while a != 0:
+        a, b = b % a, a
+    return b
+
+# 扩展欧几里德算法
+def exgcd(a, m):
+    if gcd(a, m) != 1:
+        return None
+    u1, u2, u3 = 1, 0, a
+    v1, v2, v3 = 0, 1, m
+    while v3 != 0:
+        q = u3 // v3
+        v1, v2, v3, u1, u2, u3 = (u1 - q * v1), (u2 - q * v2), (u3 - q * v3), v1, v2, v3
+    return u1 % m
+
+q = input(&quot;输入矩阵A：（格式为：[[11, 2, 19], [5, 23, 25], [20, 7, 17]]）:&quot;)
+a = np.mat(eval(q))
+w = input(&quot;输入矩阵B：&quot;)
+b = np.mat(eval(w))
+# 原文与矩阵转换
+e = input(&quot;输入原文：&quot;)
+elist = list(e)
+for i in range(len(elist)):
+    elist[i] = ord(elist[i]) - 97
+x = np.zeros((3, int(len(elist) / 3)), dtype=int)
+m = np.mat(x)
+i = 0
+h = 0
+for i in range(int(len(elist) / 3)):
+    j = 0
+    for j in range(3):
+        m[j, int(h / 3)] = elist[h]
+        h = h + 1
+
+# 加密算法
+c = np.dot(a,m) + b
+c = my_int_inv(c)
+
+# 矩阵与密文转换
+i = 0
+h = 0
+print(&quot;加密结果&quot;)
+for i in range(int(len(elist) / 3)):
+    j = 0
+    for j in range(3):
+        sys.stdout.write(chr(c[j, int(h / 3)] + 97))
+        h = h + 1
+print(&quot;&quot;)
+# 求a的逆
+a_inv = a.I
+a_det = det(a)
+a_adju = my_int_inv(a_det * a_inv)
+a_det_inv = exgcd(int(round((det(a) % 26))), 26)
+aa_inv = my_int_inv(a_det_inv * a_adju)
+
+# 解密算法
+m = (aa_inv * (c - b)) % 26
+
+# 矩阵与原文转换
+i = 0
+h = 0
+print(&quot;解密结果：&quot;)
+for i in range(int(len(elist) / 3)):
+    j = 0
+    for j in range(3):
+        sys.stdout.write(chr(m[j, int(h / 3)] + 97))
+        h = h + 1
+print(&quot;&quot;)
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/02/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown基本语法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 20:50:07 / 修改时间：21:39:22" itemprop="dateCreated datePublished" datetime="2022-05-02T20:50:07+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">工具教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1. 斜体和粗体"></a>1. 斜体和粗体</h2><pre><code>*斜体*或_斜体_
+**粗体**
+***加粗斜体***
+~~删除线~~
+</code></pre>
+<p><em>斜体</em></p>
+<p><strong>粗体</strong></p>
+<p><strong><em>加粗斜体</em></strong></p>
+<p><del>删除线</del></p>
+<h2 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2. 分级标题"></a>2. 分级标题</h2><pre><code># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre>
+<h2 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3. 超链接"></a>3. 超链接</h2><p>Markdown 支持两种形式的链接语法： 行内式和参考式两种形式，行内式一般使用较多。</p>
+<h3 id="3-1-行内式"><a href="#3-1-行内式" class="headerlink" title="3.1 行内式"></a>3.1 行内式</h3><p>语法说明：<br>[]里写链接文字，()里写链接地址, ()中的”“中可以为链接指定title属性，title属性可可不加。title属性的效果是鼠标悬停在链接上会出现指定的 title文字。链接地址与链接题前有一个空格。</p>
+<pre><code>[朱鱼鱼的小本本](https://zuicy.party/)
+[朱鱼鱼的小本本](https://zuicy.party/ &quot;朱鱼鱼的小本本&quot;)
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://zuicy.party/">朱鱼鱼的小本本</a></p>
+<p><a target="_blank" rel="noopener" href="https://zuicy.party/" title="朱鱼鱼的小本本">朱鱼鱼的小本本</a></p>
+<h3 id="3-2-参考式"><a href="#3-2-参考式" class="headerlink" title="3.2 参考式"></a>3.2 参考式</h3><p>参考式超链接一般用在学术论文上面，或者另一种情况，如果某一个链接在文章中多处使用，那么使用引用的方式创建链接将非常好，它可以让你对链接进行统一的管理。</p>
+<p>语法说明：参考式链接分为两部分，文中的写法 [链接文字][链接标记]，在文本的任意位置添加[链接标记]:链接地址 “链接标题”，链接地址与链接标题前有一个空格。</p>
+<p>如果链接文字本身可以做为链接标记，你也可以写成[链接文字][] [链接文字]：链接地址的形式，见代码的最后一行。</p>
+<pre><code>几个网站[Google][1],[朱鱼鱼的小本本][]。
+[1]:http://www.google.com
+[朱鱼鱼的小本本]:https://zuicy.party/
+</code></pre>
+<p>我经常去的几个网站<a target="_blank" rel="noopener" href="http://www.google.com/">Google</a>,[朱鱼鱼的小本本][]。</p>
+<h3 id="3-3-自动链接"><a href="#3-3-自动链接" class="headerlink" title="3.3 自动链接"></a>3.3 自动链接</h3><p>语法说明： Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用&lt;&gt;包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：</p>
+<pre><code>&lt;mail@example.com&gt;
+</code></pre>
+<p><a href="mailto:mail@example.com">mail@example.com</a></p>
+<h2 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4. 锚点"></a>4. 锚点</h2><p>网页中，锚点其实就是页内超链接，也就是链接本文档内部的某些元素，实现当前页面中的跳转。比如我这里写下一个锚点，点击回到目录，就能跳转到目录。 在目录中点击这一节，就能跳过来。还有下一节的注脚。这些根本上都是用锚点来实现的。</p>
+<pre><code>&lt;span id = &quot;jump&quot;&gt;跳转到的位置&lt;/span&gt;
+
+&lt;pre&gt;`&lt;span id = &quot;jump&quot;&gt;跳转到的位置&lt;/span&gt;
+跳转到[跳转到的位置](#index)
+</code></pre>
+<p>跳转到<a href="#jump">跳转到的位置</a></p>
+<h2 id="5-列表"><a href="#5-列表" class="headerlink" title="5. 列表"></a>5. 列表</h2><h3 id="5-1-无序列表"><a href="#5-1-无序列表" class="headerlink" title="5.1 无序列表"></a>5.1 无序列表</h3><p>使用 *，+，- 表示无序列表。</p>
+<pre><code>- 无序列表项 
+- 无序列表项 
+- 无序列表项 
+</code></pre>
+<ul>
+<li>无序列表项</li>
+<li>无序列表项</li>
+<li>无序列表项</li>
+</ul>
+<h3 id="5-2-有序列表"><a href="#5-2-有序列表" class="headerlink" title="5.2 有序列表"></a>5.2 有序列表</h3><p>有序列表则使用数字接着一个英文句点。</p>
+<pre><code>1. 有序列表项
+2. 有序列表项
+3. 有序列表项
+</code></pre>
+<ol>
+<li>有序列表项</li>
+<li>有序列表项</li>
+<li>有序列表项</li>
+</ol>
+<h3 id="5-3-定义型列表"><a href="#5-3-定义型列表" class="headerlink" title="5.3 定义型列表"></a>5.3 定义型列表</h3><p>语法说明：</p>
+<p>定义型列表由名词和解释组成。一行写上定义，紧跟一行写上解释。解释的写法:紧跟一个缩进(Tab)</p>
+<pre><code>代码块 1 Markdown
+:    轻量级文本标记语言，可以转换成html，pdf等格式（左侧有一个可见的冒号和四个不可见的空格）
+</code></pre>
+<dl>
+<dt>代码块 1 Markdown</dt>
+<dd>轻量级文本标记语言，可以转换成html，pdf等格式（左侧有一个可见的冒号和四个不见的空格）</dd>
+</dl>
+
+<h3 id="5-4-包含段落的列表"><a href="#5-4-包含段落的列表" class="headerlink" title="5.4 包含段落的列表"></a>5.4 包含段落的列表</h3><p>语法说明：</p>
+<p>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符（显示效果与代码一致）：</p>
+<pre><code>* 第一段
+
+第二段
+
+* 第三段
+</code></pre>
+<ul>
+<li>第一段<br>第二段</li>
+<li>第三段</li>
+</ul>
+<h3 id="5-5-包含引用的列表"><a href="#5-5-包含引用的列表" class="headerlink" title="5.5 包含引用的列表"></a>5.5 包含引用的列表</h3><p>语法说明：</p>
+<p>如果要在列表项目内放进引用，那 &gt; 就需要缩进：</p>
+<pre><code>*   阅读的方法:
+    &gt; 打开书本。
+    &gt; 打开电灯。
+</code></pre>
+<ul>
+<li>阅读的方法:<blockquote>
+<p>打开书本。<br>打开电灯。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6. 引用"></a>6. 引用</h2><p>语法说明：</p>
+<p>引用需要在被引用的文本前加上&gt;符号。</p>
+<pre><code>&gt; 引用
+</code></pre>
+<blockquote>
+<p>引用</p>
+</blockquote>
+<h3 id="6-1-引用的多层嵌套"><a href="#6-1-引用的多层嵌套" class="headerlink" title="6.1 引用的多层嵌套"></a>6.1 引用的多层嵌套</h3><p>区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &gt; ：</p>
+<pre><code>&gt;&gt;&gt; 别瞎说啊！ - 鲁迅
+
+&gt;&gt; 我没说！ - 鲁迅
+
+&gt; 谁说的？ - 鲁迅
+</code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>别瞎说啊！ - 鲁迅</p>
+</blockquote>
+<pre><code>    我没说！ - 鲁迅
+</code></pre>
+</blockquote>
+<pre><code>  谁说的？ - 鲁迅
+</code></pre>
+</blockquote>
+<h3 id="6-2-引用其它要素"><a href="#6-2-引用其它要素" class="headerlink" title="6.2 引用其它要素"></a>6.2 引用其它要素</h3><p>引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等</p>
+<h2 id="7-插入图像"><a href="#7-插入图像" class="headerlink" title="7. 插入图像"></a>7. 插入图像</h2><p>图片的创建方式与超链接相似，而且和超链接一样也有两种写法，行内式和参考式写法。</p>
+<p>语法中图片Alt的意思是如果图片因为某些原因不能显示，就用定义的图片Alt文字来代替图片。 图片Title则和链接中的Title一样，表示鼠标悬停与图片上时出现的文字。 Alt 和 Title 都不是必须的，可以省略，但建议写上。</p>
+<h2 id="8-内容目录"><a href="#8-内容目录" class="headerlink" title="8. 内容目录"></a>8. 内容目录</h2><p>在段落中填写 [TOC] 以显示全文内容的目录结构。</p>
+<h2 id="9-注脚"><a href="#9-注脚" class="headerlink" title="9. 注脚"></a>9. 注脚</h2><p>语法说明：</p>
+<p>在需要添加注脚的文字后加上脚注名字[^注脚名字],称为加注。 然后在文本的任意位置(一般在最后)添加脚注，脚注前必须有对应的脚注名字。</p>
+<p>注意：经测试注脚与注脚之间必须空一行，不然会失效。成功后会发现，即使你没有把注脚写在文末，经Markdown转换后，也会自动归类到文章的最后。</p>
+<pre><code>使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^a]。
+
+[^1]:Markdown是一种纯文本标记语言
+
+[^a]:HyperText Markup Language 超文本标记语言
+</code></pre>
+<h2 id="10-LaTeX-公式"><a href="#10-LaTeX-公式" class="headerlink" title="10. LaTeX 公式"></a>10. LaTeX 公式</h2><pre><code>$ 表示行内公式
+$$ 表示整行公式
+</code></pre>
+<p>具体用法可参考<a target="_blank" rel="noopener" href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" title="mathjax">mathjax</a></p>
+<h2 id="11-表格"><a href="#11-表格" class="headerlink" title="11. 表格"></a>11. 表格</h2><p>语法说明：</p>
+<p>不管是哪种方式，第一行为表头，第二行分隔表头和主体部分，第三行开始每一行为一个表格行。 列于列之间用管道符|隔开。原生方式的表格每一行的两边也要有管道符。 第二行还可以为不同的列指定对齐方向。默认为左对齐，在-右边加上:就右对齐。</p>
+<p>1.简单方式写表格：</p>
+<pre><code>学号|姓名|分数
+-|-|-
+小明|男|75
+小红|女|79
+小陆|男|92
+</code></pre>
+<p>2.原生方式写表格：</p>
+<pre><code>|学号|姓名|分数|
+|-|-|-|
+|小明|男|75|
+|小红|女|79|
+|小陆|男|92|
+</code></pre>
+<p>3.为表格第二列指定方向：</p>
+<pre><code>产品|价格
+-|-:
+A|60元
+B|120000000元
+</code></pre>
+<p>1.简单方式写表格：</p>
+<table>
+<thead>
+<tr>
+  <th>学号</th>
+  <th>姓名</th>
+  <th>分数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>小明</td>
+  <td>男</td>
+  <td>75</td>
+</tr>
+<tr>
+  <td>小红</td>
+  <td>女</td>
+  <td>79</td>
+</tr>
+<tr>
+  <td>小陆</td>
+  <td>男</td>
+  <td>92</td>
+</tr>
+</tbody>
+</table>
+
+<p>2.原生方式写表格：</p>
+<table>
+<thead>
+<tr>
+  <th>学号</th>
+  <th>姓名</th>
+  <th>分数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>小明</td>
+  <td>男</td>
+  <td>75</td>
+</tr>
+<tr>
+  <td>小红</td>
+  <td>女</td>
+  <td>79</td>
+</tr>
+<tr>
+  <td>小陆</td>
+  <td>男</td>
+  <td>92</td>
+</tr>
+</tbody>
+</table>
+
+<p>3.为表格第二列指定方向：</p>
+<table>
+<thead>
+<tr>
+  <th>产品</th>
+  <th align="right">价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>A</td>
+  <td align="right">60元</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td align="right">120000000元</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="13-分隔线"><a href="#13-分隔线" class="headerlink" title="13. 分隔线"></a>13. 分隔线</h2><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<pre><code>* * *
+
+***
+
+*****
+
+- - -
+
+---------------------------------------
+</code></pre>
+<hr>
+<p>显示效果都一样</p>
+<h2 id="14-代码"><a href="#14-代码" class="headerlink" title="14. 代码"></a>14. 代码</h2><p>对于程序员来说这个功能是必不可少的，插入程序代码的方式有两种，一种是利用缩进(Tab), 另一种是利用&#96;符号包裹代码。</p>
+<h3 id="14-1-行内式"><a href="#14-1-行内式" class="headerlink" title="14.1 行内式"></a>14.1 行内式</h3><pre><code>C语言里的函数 `scanf()` 怎么使用？
+</code></pre>
+<p>C语言里的函数 <code>scanf()</code> 怎么使用？</p>
+<h3 id="14-2-缩进式多行代码"><a href="#14-2-缩进式多行代码" class="headerlink" title="14.2 缩进式多行代码"></a>14.2 缩进式多行代码</h3><p>缩进 4 个空格或是 1 个制表符</p>
+<p>一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。</p>
+<pre><code>    #include &lt;stdio.h&gt;
+    int main(void)
+    &#123;
+        printf(&quot;Hello world\n&quot;);
+    &#125;
+</code></pre>
+<hr>
+<pre><code>#include &lt;stdio.h&gt;
+int main(void)
+&#123;
+    printf(&quot;Hello world\n&quot;);
+&#125;
+</code></pre>
+<h3 id="14-3-用六个-96-包裹多行代码"><a href="#14-3-用六个-96-包裹多行代码" class="headerlink" title="14.3 用六个&#96;包裹多行代码"></a>14.3 用六个&#96;包裹多行代码</h3><pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
 
 <div class="copyright">
-  
   &copy; 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
@@ -315,36 +880,18 @@
   </span>
   <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
+  
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
 
 
 
@@ -354,20 +901,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 
 </body>
 </html>

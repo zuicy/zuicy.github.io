@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="编写shellcode时，一般需使用一些API函数，例如CreateProcess(),socket()等，这些函数的入口地址位于系统的动态链接库中，由于不同操作系统的动态链接库的加载地址不同，shellcode中需增加API函数自搜索功能。 shellcodeshellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索API函数地址">
+<meta property="og:url" content="http://example.com/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/index.html">
+<meta property="og:site_name" content="zuicy的博客">
+<meta property="og:description" content="编写shellcode时，一般需使用一些API函数，例如CreateProcess(),socket()等，这些函数的入口地址位于系统的动态链接库中，由于不同操作系统的动态链接库的加载地址不同，shellcode中需增加API函数自搜索功能。 shellcodeshellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shel">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-02T12:47:40.000Z">
+<meta property="article:modified_time" content="2022-05-02T13:38:29.296Z">
+<meta property="article:author" content="zuicyzhu">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="大学课程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/","path":"2022/05/02/搜索API函数地址/","title":"搜索API函数地址"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>搜索API函数地址 | zuicy的博客</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zuicy的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">哼</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shellcode"><span class="nav-number">1.</span> <span class="nav-text">shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">获取步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">汇编代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zuicyzhu</p>
+  <div class="site-description" itemprop="description">哈</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="搜索API函数地址 | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          搜索API函数地址
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 20:47:40 / 修改时间：21:38:29" itemprop="dateCreated datePublished" datetime="2022-05-02T20:47:40+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>编写shellcode时，一般需使用一些API函数，例如CreateProcess(),socket()等，这些函数的入口地址位于系统的动态链接库中，由于不同操作系统的动态链接库的加载地址不同，shellcode中需增加API函数自搜索功能。</p>
+<h2 id="shellcode"><a href="#shellcode" class="headerlink" title="shellcode"></a>shellcode</h2><p>shellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在暂存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。</p>
+<h2 id="获取步骤"><a href="#获取步骤" class="headerlink" title="获取步骤"></a>获取步骤</h2><ol>
+<li>定位kernel32.dll地址1）  通过段选择字FS在内存中找到当前的线程控制模块TEB<br>2）  线程控制块中偏移位置为0x30的地方存放着指向进程控制块PEB的指针3）  进程控制块中偏移地址0x0c的地址存放着指向PEB_LDA_DATA结构体的指针，其中存放着已经被装载的动态链接库信息。4）  PEB_LDA_DATA结构体偏移地址为0x1c的地方存放着指向模块初始化链表的头指针InInitializationOrderModulelist。5）  模块初始化链表InInitializationOrderModulelist中按顺序存放着PE装入运行时初始化模块信息，第一个链表节点是ntdll.dll，第二个链表节点就是kernel32.dll。6）  找到属于kernel32.dll的节点后，在此基础上再便宜0x08就是kernel32.dll在内存中的价值基地址。</li>
+<li>定位LoadLibrary（）及GetProcAddress()地址<br>1）  从kernel32.dll的加载基地址开始偏移0x3c的地方就是其PE头2）  PE头偏移0x78的地方存放着指向函数导出表的指针。3）  按以下方式在导出表中算出所需函数的入口地址（1）导出表偏移0x1c处的指针指向存储导出函数偏移地址（RVA）的列表（2）导出表偏移0x20处的指针指向存储导出函数函数名的列表（3）函数的RVA地址和名称按顺序放在RVA列表及函数名列表中，根据函数名在函数名称列表中搜索函数序号，再根据函数序号在RVA列表中搜索函数对应的RVA<br>（4）函数对应的RVA加上动态链接库的加载地址得到该函数的虚拟地址。</li>
+</ol>
+<h2 id="汇编代码"><a href="#汇编代码" class="headerlink" title="汇编代码"></a>汇编代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">.386</span><br><span class="line"></span><br><span class="line">.model flat,stdcall</span><br><span class="line"></span><br><span class="line">option casemap:none</span><br><span class="line"></span><br><span class="line">includelib \masm32\lib\kernel32.lib</span><br><span class="line">includelib \masm32\lib\user32.lib</span><br><span class="line">includelib \masm32\lib\gdi32.lib</span><br><span class="line">includelib \masm32\lib\msvcrt.lib</span><br><span class="line">includelib \masm32\lib\masm32.lib</span><br><span class="line"></span><br><span class="line">include \masm32\include\kernel32.inc</span><br><span class="line">include \masm32\include\user32.inc</span><br><span class="line">include \masm32\include\gdi32.inc</span><br><span class="line">include \masm32\include\windows.inc</span><br><span class="line">include \masm32\include\msvcrt.inc</span><br><span class="line">include \masm32\include\masm32.inc</span><br><span class="line">include \masm32\macros\macros.asm</span><br><span class="line">.data</span><br><span class="line">mesg1 db &#x27;kernel32.dll地址: %x &#x27;,0ah , 0</span><br><span class="line">mesg2 db &#x27;LoadLibrary（）地址: %x &#x27;,0ah , 0</span><br><span class="line">mesg3 db &#x27;GetProcAddress（）地址: %x&#x27;,0ah , 0</span><br><span class="line">mesg4 db &quot;GetProcAddress&quot;,0</span><br><span class="line">mesg6 db &quot;LoadLibraryA&quot;,0</span><br><span class="line">mesg7 db &quot;test:%x&quot;,0</span><br><span class="line">add_b dd ?</span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">assume fs:nothing</span><br><span class="line">MOV EBX,FS:[30H]                </span><br><span class="line">MOV EBX,[EBX+0CH]               </span><br><span class="line">MOV EBX,[EBX+14H]               </span><br><span class="line">MOV EBX,[EBX]             </span><br><span class="line">MOV EBX,[EBX]                 </span><br><span class="line">MOV EBP,[EBX+10H]                       </span><br><span class="line">invoke crt_printf,  addr mesg1,EBP ;kernel32.dll地址</span><br><span class="line">MOV EAX,[EBP+3CH]       </span><br><span class="line">MOV ECX,[EBP+EAX+78H]</span><br><span class="line">ADD ECX,EBP          </span><br><span class="line">MOV add_b,ECX           </span><br><span class="line">MOV EBX,[ECX+20H]</span><br><span class="line">ADD EBX,EBP                         ;导出函数名列表指基地址</span><br><span class="line">;invoke crt_printf,  addr mesg7,EBX </span><br><span class="line"></span><br><span class="line">XOR EDI,EDI                         ;清零EDI</span><br><span class="line">first:                            ;GetProcAddress</span><br><span class="line">INC EDI</span><br><span class="line">MOV ESI,[EBX+EDI*4]</span><br><span class="line">ADD ESI,EBP                        ;esi = 函数名称所在地址</span><br><span class="line">invoke lstrcmp, addr mesg4, ESI</span><br><span class="line">.if EAX==0  </span><br><span class="line">MOV EBX,dword ptr[add_b]</span><br><span class="line">MOV EBX,[EBX+24H] </span><br><span class="line">ADD EBX,EBP                        ;地址表的基地址（rva中的序号表）</span><br><span class="line">MOVZX EBX,WORD PTR[EBX+2*EDI]                 </span><br><span class="line">MOV EAX,EBX</span><br><span class="line">MOV EBX,dword ptr[add_b]           ;实际序号</span><br><span class="line">MOV EBX,[EBX+1CH]</span><br><span class="line">ADD EBX,EBP                     </span><br><span class="line">MOV EBX,[EBX+4*EAX]                 </span><br><span class="line">ADD EBX,EBP                        ;实际地址</span><br><span class="line">invoke crt_printf,  addr mesg3, EBX</span><br><span class="line">.else</span><br><span class="line">JMP first</span><br><span class="line">.endif </span><br><span class="line">MOV ECX,add_b</span><br><span class="line">MOV EBX,[ECX+20H]</span><br><span class="line">ADD EBX,EBP                         ;导出函数名列表指基地址</span><br><span class="line">;invoke crt_printf,  addr mesg7, EBX</span><br><span class="line"></span><br><span class="line">XOR EDI,EDI</span><br><span class="line">second:                          ;LoadLibrary</span><br><span class="line">INC EDI</span><br><span class="line">MOV ESI,[EBX+EDI*4]</span><br><span class="line">ADD ESI,EBP                        ;esi = 函数名称所在地址</span><br><span class="line">invoke lstrcmp, addr mesg6, ESI</span><br><span class="line">.if eax==0  </span><br><span class="line">MOV EBX,dword ptr[add_b]</span><br><span class="line">MOV EBX,[EBX+24H] </span><br><span class="line">ADD EBX,EBP                        ;地址表的基地址（rva中的序号表）</span><br><span class="line">MOVZX EBX,WORD PTR[EBX+2*EDI]                 </span><br><span class="line">MOV EAX,EBX</span><br><span class="line">MOV EBX,dword ptr[add_b]           ;实际序号</span><br><span class="line">MOV EBX,[EBX+1CH]</span><br><span class="line">ADD EBX,EBP                      </span><br><span class="line">MOV EBX,[EBX+4*EAX]                 </span><br><span class="line">ADD EBX,EBP                        ;实际地址</span><br><span class="line">invoke crt_printf,  addr mesg2, EBX </span><br><span class="line">ret</span><br><span class="line">.else</span><br><span class="line">JMP second</span><br><span class="line">.endif </span><br><span class="line"></span><br><span class="line">ret</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+              <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" rel="tag"># 大学课程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/02/%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E4%BF%A1%E8%BD%AF%E5%AD%A6%E9%99%A2%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8Alatex%E6%A8%A1%E6%9D%BF/" rel="prev" title="电子科技大学信软学院实验报告latex模板">
+                  <i class="fa fa-chevron-left"></i> 电子科技大学信软学院实验报告latex模板
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/02/jpcap-java%E5%AE%9E%E7%8E%B0%E6%9C%AC%E6%9C%BA%E7%9A%84%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E7%BB%9F%E8%AE%A1/" rel="next" title="jpcap-java实现本机的网络流量统计">
+                  jpcap-java实现本机的网络流量统计 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/02/%E6%90%9C%E7%B4%A2API%E5%87%BD%E6%95%B0%E5%9C%B0%E5%9D%80/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

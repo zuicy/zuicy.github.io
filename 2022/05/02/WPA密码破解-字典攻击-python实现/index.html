@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="WPAWPA（英语：Wi-Fi Protected Access），意即“Wi-Fi访问保护”，是一种保护无线网络（Wi-Fi）访问安全的技术标准。它是应研究者在前一代的有线等效加密（WEP）系统中找到的几个严重的弱点而产生的。当前广泛实现的有WPA、WPA2两个标准，WPA实现了IEEE 802.11i标准的大部分，是在802.11i完备之前替代WEP的过渡方案。WPA的设计可以用在所有的无线网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WPA密码破解-字典攻击(python实现)">
+<meta property="og:url" content="http://example.com/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="zuicy的博客">
+<meta property="og:description" content="WPAWPA（英语：Wi-Fi Protected Access），意即“Wi-Fi访问保护”，是一种保护无线网络（Wi-Fi）访问安全的技术标准。它是应研究者在前一代的有线等效加密（WEP）系统中找到的几个严重的弱点而产生的。当前广泛实现的有WPA、WPA2两个标准，WPA实现了IEEE 802.11i标准的大部分，是在802.11i完备之前替代WEP的过渡方案。WPA的设计可以用在所有的无线网">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-02T12:41:45.000Z">
+<meta property="article:modified_time" content="2022-05-02T13:39:59.940Z">
+<meta property="article:author" content="zuicyzhu">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="大学课程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/","path":"2022/05/02/WPA密码破解-字典攻击-python实现/","title":"WPA密码破解-字典攻击(python实现)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>WPA密码破解-字典攻击(python实现) | zuicy的博客</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zuicy的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">哼</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WPA"><span class="nav-number">1.</span> <span class="nav-text">WPA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WPA%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">WPA四次握手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB"><span class="nav-number">3.</span> <span class="nav-text">字典攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">攻击步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8A%93%E5%8F%96%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%E6%8F%A1%E6%89%8B%E5%8C%85"><span class="nav-number">4.0.1.</span> <span class="nav-text">1.抓取无线网络握手包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%A0%B4%E8%A7%A3WPA-PSK%E7%9A%84%E5%8F%A3%E4%BB%A4"><span class="nav-number">4.0.2.</span> <span class="nav-text">2.运行程序破解WPA-PSK的口令</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zuicyzhu</p>
+  <div class="site-description" itemprop="description">哈</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="WPA密码破解-字典攻击(python实现) | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WPA密码破解-字典攻击(python实现)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 20:41:45 / 修改时间：21:39:59" itemprop="dateCreated datePublished" datetime="2022-05-02T20:41:45+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="WPA"><a href="#WPA" class="headerlink" title="WPA"></a>WPA</h1><p>WPA（英语：Wi-Fi Protected Access），意即“Wi-Fi访问保护”，是一种保护无线网络（Wi-Fi）访问安全的技术标准。它是应研究者在前一代的有线等效加密（WEP）系统中找到的几个严重的弱点而产生的。当前广泛实现的有WPA、WPA2两个标准，WPA实现了IEEE 802.11i标准的大部分，是在802.11i完备之前替代WEP的过渡方案。WPA的设计可以用在所有的无线网卡上，但未必能用在第一代的无线接入点上。WPA2具备完整的标准体系，但其不能被应用在某些旧型的网卡上。</p>
+<p><strong>WPA &#x3D; 802.1x + EAP + TKIP +MIC &#x3D; Pre-shared Key + TKIP + MIC</strong></p>
+<p><strong>802.11i(WPA2)&#x3D; 802.1x + EAP + AES + CCMP&#x3D; Pre-shared Key + AES + CCMP</strong></p>
+<p>802.1x + EAP，Pre-shared Key是身份校验算法</p>
+<p>TKIP和AES是数据传输加密算法</p>
+<p>MIC和CCMP数据完整性编码校验算法</p>
+<h1 id="WPA四次握手"><a href="#WPA四次握手" class="headerlink" title="WPA四次握手"></a>WPA四次握手</h1><p><strong>1）WPA-PSK 初始化工作</strong></p>
+<p>使用 SSID 和passphares使用以下算法产生PSK 在WPA-PSK 中</p>
+<p>PSK&#x3D;PMK&#x3D;pdkdf2_SHA1(passphrase，SSID，SSID length，4096)</p>
+<p><strong>2）第一次握手</strong></p>
+<p>AP广播SSID，AP_MAC(AA)→STATION</p>
+<p>STATION 端</p>
+<p>使用接受到的SSID，AP_MAC(AA)和passphares使用同样算法产生PSK</p>
+<p>PSK&#x3D;PMK&#x3D;pdkdf2_SHA1(passphrase，SSID，SSID length，4096)</p>
+<p><strong>3）第二次握手</strong></p>
+<p>STATION 发送一个随机数SNonce，STATION_MAC(SA)→AP</p>
+<p>AP端</p>
+<p>接受到SNonce，STATION_MAC(SA)后产生一个随机数ANonce</p>
+<p>然后用PMK，AP_MAC(AA)，STATION_MAC(SA)，SNonce，ANonce 用以下算法产生PTK</p>
+<p>PTK&#x3D;SHA1_PRF(PMK， Len(PMK)，”Pairwise key expansion”，MIN(AA，SA) ||Max(AA，SA) || Min(ANonce，SNonce) || Max(ANonce，SNonce))</p>
+<p>MIC Key&#x3D;PTK前16个字节</p>
+<p>提取这个PTK 前16 个字节组成一个MIC KEY</p>
+<p><strong>4）第三次握手</strong></p>
+<p>AP发送上面产生的ANonce→STATION</p>
+<p>STATION 端</p>
+<p>用接收到ANonce 和以前产生PMK，SNonce，AP_MAC(AA)，STATION_MAC(SA)用同样的算法产生PTK。提取这个PTK 前16 个字节组成一个MICKEY使用以下算法产生MIC值用这个MIC KEY 和一个802.1x data 数据帧使用以下算法得到MIC值</p>
+<p>MIC &#x3D; HMAC_MD5(MIC Key，16，802.1x data)</p>
+<p><strong>5）第四次握手</strong></p>
+<p>STATION 发送802.1x data ，MIC→AP</p>
+<p>STATION 端</p>
+<p>用上面那个准备好的802.1x 数据帧在最后填充上MIC值和两个字节的0（十六进制）让后发送这个数据帧到AP。</p>
+<p>AP端</p>
+<p>收到这个数据帧后提取这个MIC。并把这个数据帧的MIC部分都填上0（十六进制）这时用这个802.1xdata 数据帧，和用上面AP产生的MIC KEY 使用同样的算法得出MIC’。如果MIC’等于STATION发送过来的MIC。那么第四次握手成功。若不等说明则AP 和STATION 的密钥不相同，或STATION 发过来的数据帧受到过中间人攻击，原数据被篡改过。握手失败了。</p>
+<p><strong>6）MIC的产生过程</strong></p>
+<p>PSK&#x3D;PMK&#x3D;pdkdf2_SHA1(passphrase， SSID， SSID length，4096)</p>
+<p>PTK&#x3D;SHA1_PRF(PMK， Len(PMK)，”Pairwise key expansion”，MIN(AA，SA) || Max(AA，SA) || Min(ANonce，SNonce) || Max(ANonce，SNonce))</p>
+<p>MIC KEY&#x3D;提取PTK 的前16 个字节</p>
+<p>MIC &#x3D; HMAC_MD5(MIC Key，16，802.1x data)</p>
+<h1 id="字典攻击"><a href="#字典攻击" class="headerlink" title="字典攻击"></a>字典攻击</h1><p>字典攻击，就是把密码的可能性罗列起来组成一个密码字典。然后把字典里的密码和SSID，AP_MAC，<br>STATION_MAC，SNonce，ANonce，802.1x data，这些信息元素。通过pdkdf2_SHA1,SHA1_PRF,HMAC_MD5 这些算法最后生成MIC’。当在字典里找到一个密码他的MIC’等于握手包中的MIC。这时字典破解成功。这就是我们要的那个密码。如果把字典里的所有密码都找遍了还有没有符合上述条件的，那么破解失败。</p>
+<h1 id="攻击步骤"><a href="#攻击步骤" class="headerlink" title="攻击步骤"></a>攻击步骤</h1><h3 id="1-抓取无线网络握手包"><a href="#1-抓取无线网络握手包" class="headerlink" title="1.抓取无线网络握手包"></a>1.抓取无线网络握手包</h3><p>使用专用网卡抓取无线网络握手包。可以守株待兔等有人去链接wifi，也可以直接攻击已连接用户迫使其断线重连。</p>
+<h3 id="2-运行程序破解WPA-PSK的口令"><a href="#2-运行程序破解WPA-PSK的口令" class="headerlink" title="2.运行程序破解WPA-PSK的口令"></a>2.运行程序破解WPA-PSK的口令</h3><p>程序流程如下：</p>
+<p>1）获取密码字典列表</p>
+<p>2）使用SSID，AP_MAC，<br>STATION_MAC，SNonce，ANonce，802.1x data和密码生成MIC<br>，并与抓到的包中的MIC进行比较。</p>
+<p>在第二步中，由于当字典比较大的时候程序的运行时间会很长，所以加入多进程来<br>减少程序的运行时间。</p>
+<p>具体代码：<br><a target="_blank" rel="noopener" href="https://github.com/zuicy/wpass_get" title="github">github</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+              <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" rel="tag"># 大学课程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/02/vscode+plantuml%20%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E7%94%BB%E5%9B%BE/" rel="prev" title="vscode+plantuml 实现快速画图">
+                  <i class="fa fa-chevron-left"></i> vscode+plantuml 实现快速画图
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/" rel="next" title="WPA2密钥重装攻击">
+                  WPA2密钥重装攻击 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

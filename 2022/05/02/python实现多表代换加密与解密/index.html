@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、原理 [toc]什么是多表代换？多表代换加密是相对于单表代换加密而言的， 单表代换是密码学中最基础的一种加密方式。在加密时用一张自制字母表上的字母来代替明文上的字母（比如说A——Z，B——D）来达到加密。移位密码也属于单表代换，只不过比较有规律，相当于集体向前或向后。 这种加密方法最容易被破解。破解方法为统计法。在英语中，最常用的字母为E，所以在密文中代替E 的字母出现的频率也最高，由此便可破">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python实现多表代换加密与解密">
+<meta property="og:url" content="http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/index.html">
+<meta property="og:site_name" content="zuicy的博客">
+<meta property="og:description" content="一、原理 [toc]什么是多表代换？多表代换加密是相对于单表代换加密而言的， 单表代换是密码学中最基础的一种加密方式。在加密时用一张自制字母表上的字母来代替明文上的字母（比如说A——Z，B——D）来达到加密。移位密码也属于单表代换，只不过比较有规律，相当于集体向前或向后。 这种加密方法最容易被破解。破解方法为统计法。在英语中，最常用的字母为E，所以在密文中代替E 的字母出现的频率也最高，由此便可破">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=46f7e2acda88d43fe4a499a01c77b97e/58ee3d6d55fbb2fbf9e21dcb434a20a44723dc1a.jpg">
+<meta property="og:image" content="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D168/sign=c4b688b259fbb2fb302b5c14774b2043/b7003af33a87e950a87273831c385343faf2b4fc.jpg">
+<meta property="og:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D168/sign=b86be9bf38a85edffe8cfa25715509d8/f9dcd100baa1cd1176d1f2cfb512c8fcc2ce2dfd.jpg">
+<meta property="og:image" content="http://zuicy.party/wp-content/uploads/2019/03/20181117164833730.png">
+<meta property="og:image" content="http://zuicy.party/wp-content/uploads/2019/03/20181117164833799.png">
+<meta property="og:image" content="http://zuicy.party/wp-content/uploads/2019/03/20181117164916241.png">
+<meta property="og:image" content="http://zuicy.party/wp-content/uploads/2019/03/20181117164916244.png">
+<meta property="article:published_time" content="2022-05-02T13:04:39.000Z">
+<meta property="article:modified_time" content="2022-05-02T13:39:31.885Z">
+<meta property="article:author" content="zuicyzhu">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="大学课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=46f7e2acda88d43fe4a499a01c77b97e/58ee3d6d55fbb2fbf9e21dcb434a20a44723dc1a.jpg">
+
+
+<link rel="canonical" href="http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/","path":"2022/05/02/python实现多表代换加密与解密/","title":"python实现多表代换加密与解密"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python实现多表代换加密与解密 | zuicy的博客</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zuicy的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">哼</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86-toc"><span class="nav-number">1.</span> <span class="nav-text">一、原理 [toc]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是多表代换？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E7%9A%84%E6%95%B0%E5%AD%A6%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">多表代换的数学表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">二、实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%B4%E5%90%89%E5%B0%BC%E4%BA%9A%E5%AF%86%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">维吉尼亚密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E7%A6%8F%E7%89%B9%E5%AF%86%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">博福特密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">三、实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.1.</span> <span class="nav-text">实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A7%98%E9%92%A5%E7%94%9F%E6%88%90"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.秘钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8A%A0%E5%AF%86"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A7%A3%E5%AF%86"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">实现代码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zuicyzhu</p>
+  <div class="site-description" itemprop="description">哈</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python实现多表代换加密与解密 | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python实现多表代换加密与解密
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 21:04:39 / 修改时间：21:39:31" itemprop="dateCreated datePublished" datetime="2022-05-02T21:04:39+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">大学课程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="一、原理-toc"><a href="#一、原理-toc" class="headerlink" title="一、原理 [toc]"></a>一、原理 [toc]</h1><h2 id="什么是多表代换？"><a href="#什么是多表代换？" class="headerlink" title="什么是多表代换？"></a>什么是多表代换？</h2><p>多表代换加密是相对于单表代换加密而言的，</p>
+<p>单表代换是密码学中最基础的一种加密方式。在加密时用一张自制字母表上的字母来代替明文上的字母（比如说A——Z，B——D）来达到加密。移位密码也属于单表代换，只不过比较有规律，相当于集体向前或向后。</p>
+<p>这种加密方法最容易被破解。破解方法为统计法。在英语中，最常用的字母为E，所以在密文中代替E 的字母出现的频率也最高，由此便可破解。为了增加破译密码的难度，对于位于不同位置的同一个明文参考不同的代替表来进行替代，这样同一个明文所对应的密文也可能会是不一样的。就大大增加了破译的难度。</p>
+<h2 id="多表代换的数学表示"><a href="#多表代换的数学表示" class="headerlink" title="多表代换的数学表示"></a>多表代换的数学表示</h2><p>密钥为k,明文为m，加密为c，则有加密变换ek(m)&#x3D;c1c2…cn，其中，ci&#x3D;mi+ki mod q。</p>
+<h1 id="二、实例"><a href="#二、实例" class="headerlink" title="二、实例"></a>二、实例</h1><h2 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h2><p>在一个凯撒密码中，字母表中的每一字母都会作一定的偏移，例如偏移量为3时，A就转换为了D、B转换为了E……而维吉尼亚密码则是由一些偏移量不同的恺撒密码组成。</p>
+<p>为了生成密码，需要使用表格法。这一表格（如图1所示）包括了26行字母表，每一行都由前一行向左偏移一位得到。具体使用哪一行字母表进行编译是基于密钥进行的，在过程中会不断地变换。<br>例如，假设明文为：</p>
+<p>ATTACKATDAWN</p>
+<p>选择某一关键词并重复而得到密钥，如关键词为LEMON时，密钥为：</p>
+<p>LEMONLEMONLE</p>
+<p>字母表如下：<br><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=46f7e2acda88d43fe4a499a01c77b97e/58ee3d6d55fbb2fbf9e21dcb434a20a44723dc1a.jpg" alt="字母表" title="密码表"></p>
+<p>对于明文的第一个字母A，对应密钥的第一个字母L，于是使用表格中L行字母表进行加密，得到密文第一个字母L。类似地，明文第二个字母为T，在表格中使用对应的E行进行加密，得到密文第二个字母X。以此类推，可以得到：</p>
+<p>明文：ATTACKATDAWN密钥：LEMONLEMONLE密文：LXFOPVEFRNHR</p>
+<p>解密的过程则与加密相反。例如：根据密钥第一个字母L所对应的L行字母表，发现密文第一个字母L位于A列，因而明文第一个字母为A。密钥第二个字母E对应E行字母表，而密文第二个字母X位于此行T列，因而明文第二个字母为T。以此类推便可得到明文。</p>
+<p>用数字0-25代替字母A-Z，维吉尼亚密码的加密文法可以写成同余的形式：</p>
+<p><img src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D168/sign=c4b688b259fbb2fb302b5c14774b2043/b7003af33a87e950a87273831c385343faf2b4fc.jpg"></p>
+<p>解密方法则能写成：<br><img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D168/sign=b86be9bf38a85edffe8cfa25715509d8/f9dcd100baa1cd1176d1f2cfb512c8fcc2ce2dfd.jpg"></p>
+<h2 id="博福特密码"><a href="#博福特密码" class="headerlink" title="博福特密码"></a>博福特密码</h2><p>博福特密码，是一种类似于维吉尼亚密码的替代密码，由弗朗西斯·蒲福（Francis Beaufort）发明。它最知名的应用是M-209密码机。博福特密码属于对等加密，即加密演算法与解密演算法相同。</p>
+<p>它是按mod q减法运算的一种周期代替密码。即 ci+td&#x3D;δi(mi+td)≡(ki-mi+td)(mod q)</p>
+<p>所以，它和维吉尼亚密码类似，以ki为密钥的代替表是密文字母表为英文字母表逆序排列进行循环右移ki+1次形成的。例如，若ki&#x3D;3(相当于字母D)，则明文和密文的对应关系如下：</p>
+<p> 明文：a b c d e f g h i j k l m n o p q r s t u v w x y z </p>
+<p> 密文：D C B A Z Y X W V U T S R Q P O N M L K J I H G F E</p>
+<p>显然，博福特密码的解密变换为 mi+td≡δi(ci+td)≡(ki-ci+td)(modq)</p>
+<p>因此，博福特密码的解密变换与加密变换相同。按博福特密码，以密钥ki加密相当于按下式的维吉尼亚加密：ci+td≡ <a href="modq">(q-1)-mi+td</a></p>
+<p>若按下式加密：  ci+td≡(mi+td-ki)(modq)就得到变异的博福特密码，相应代替表示将明文字母表循环右移ki次而成。由于循环右移ki次等于循环左移(q-ki)次，即式ci+td≡(mi+td- ki)<br>(modq)等价于以(q-ki)为密钥的维吉尼亚密码。所以维吉尼亚密码和变异的博福特密码互为逆变换，若一个是加密运算，则另一个就是解密运算。</p>
+<h1 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h1><h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="1-秘钥生成"><a href="#1-秘钥生成" class="headerlink" title="1.秘钥生成"></a>1.秘钥生成</h3><p>（1）随机生成3ⅹ3可逆矩阵A，计算其行列式并模去26，若其行列式等于零或与26不互素，则重新生成矩阵。矩阵生成后，再计算其在模26下的逆矩阵。</p>
+<p>（2）生成3维向量B作为秘密密钥 。</p>
+<h3 id="2-加密"><a href="#2-加密" class="headerlink" title="2.加密"></a>2.加密</h3><p>（1）输入一段英文，将其转变成0~25之间的整数，并将这些整数分为3个一组；</p>
+<p>（2）对于<img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164833730.png"> ，计算<br><img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164833799.png"></p>
+<p>（3）重复（2）直到所有的字母都加密完毕。</p>
+<h3 id="3-解密"><a href="#3-解密" class="headerlink" title="3.解密"></a>3.解密</h3><p>（1）读入密文，将其转变成0~25之间的整数，并将这些整数分为3个一组；</p>
+<p>（2）对于<img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164916241.png"> ，计算<br><img src="http://zuicy.party/wp-content/uploads/2019/03/20181117164916244.png"></p>
+<p>（3）重复（2）直到所有的字母都解密完毕。</p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><pre><code># -- coding: utf-8 --
+import numpy as np
+from numpy.linalg import *
+import sys
+
+# 矩阵取摸
+def my_int_inv(mat, n=26):
+    x = np.zeros(mat.shape, dtype=np.int16)
+    for i in range(mat.shape[0]):
+        for j in range(mat.shape[1]):
+            x[i, j] = int(round(mat[i, j])) % n
+    return x
+
+# 欧几里德算法
+def gcd(a, b):
+    while a != 0:
+        a, b = b % a, a
+    return b
+
+# 扩展欧几里德算法
+def exgcd(a, m):
+    if gcd(a, m) != 1:
+        return None
+    u1, u2, u3 = 1, 0, a
+    v1, v2, v3 = 0, 1, m
+    while v3 != 0:
+        q = u3 // v3
+        v1, v2, v3, u1, u2, u3 = (u1 - q * v1), (u2 - q * v2), (u3 - q * v3), v1, v2, v3
+    return u1 % m
+
+q = input(&quot;输入矩阵A：（格式为：[[11, 2, 19], [5, 23, 25], [20, 7, 17]]）:&quot;)
+a = np.mat(eval(q))
+w = input(&quot;输入矩阵B：&quot;)
+b = np.mat(eval(w))
+# 原文与矩阵转换
+e = input(&quot;输入原文：&quot;)
+elist = list(e)
+for i in range(len(elist)):
+    elist[i] = ord(elist[i]) - 97
+x = np.zeros((3, int(len(elist) / 3)), dtype=int)
+m = np.mat(x)
+i = 0
+h = 0
+for i in range(int(len(elist) / 3)):
+    j = 0
+    for j in range(3):
+        m[j, int(h / 3)] = elist[h]
+        h = h + 1
+
+# 加密算法
+c = np.dot(a,m) + b
+c = my_int_inv(c)
+
+# 矩阵与密文转换
+i = 0
+h = 0
+print(&quot;加密结果&quot;)
+for i in range(int(len(elist) / 3)):
+    j = 0
+    for j in range(3):
+        sys.stdout.write(chr(c[j, int(h / 3)] + 97))
+        h = h + 1
+print(&quot;&quot;)
+# 求a的逆
+a_inv = a.I
+a_det = det(a)
+a_adju = my_int_inv(a_det * a_inv)
+a_det_inv = exgcd(int(round((det(a) % 26))), 26)
+aa_inv = my_int_inv(a_det_inv * a_adju)
+
+# 解密算法
+m = (aa_inv * (c - b)) % 26
+
+# 矩阵与原文转换
+i = 0
+h = 0
+print(&quot;解密结果：&quot;)
+for i in range(int(len(elist) / 3)):
+    j = 0
+    for j in range(3):
+        sys.stdout.write(chr(m[j, int(h / 3)] + 97))
+        h = h + 1
+print(&quot;&quot;)
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+              <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" rel="tag"># 大学课程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/02/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" rel="prev" title="Markdown基本语法">
+                  <i class="fa fa-chevron-left"></i> Markdown基本语法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/02/LaTeX-Visual-Studio-Code%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" rel="next" title="LaTeX+Visual Studio Code安装教程">
+                  LaTeX+Visual Studio Code安装教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

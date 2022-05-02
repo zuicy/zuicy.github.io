@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[toc] KRACKKRACK（取自“Key Reinstallation Attack”的缩写，中文：密钥重装攻击）是一种针对保护Wi-Fi连接的Wi-Fi Protected Access（WPA）协议的攻击手段，于2017年由比利时研究员Mathy Vanhoef和鲁汶大学Frank Piessens发现。Vanhoef的研究小组于2017年10月公布了此攻击的有关细节。 此漏洞影响所有主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WPA2密钥重装攻击">
+<meta property="og:url" content="http://example.com/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:site_name" content="zuicy的博客">
+<meta property="og:description" content="[toc] KRACKKRACK（取自“Key Reinstallation Attack”的缩写，中文：密钥重装攻击）是一种针对保护Wi-Fi连接的Wi-Fi Protected Access（WPA）协议的攻击手段，于2017年由比利时研究员Mathy Vanhoef和鲁汶大学Frank Piessens发现。Vanhoef的研究小组于2017年10月公布了此攻击的有关细节。 此漏洞影响所有主">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://13.231.106.208/wp-content/uploads/2019/12/f1b231e92e578b9b.png">
+<meta property="article:published_time" content="2022-05-02T12:42:46.000Z">
+<meta property="article:modified_time" content="2022-05-02T13:39:55.695Z">
+<meta property="article:author" content="zuicyzhu">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://13.231.106.208/wp-content/uploads/2019/12/f1b231e92e578b9b.png">
+
+
+<link rel="canonical" href="http://example.com/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/","path":"2022/05/02/WPA2密钥重装攻击/","title":"WPA2密钥重装攻击"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>WPA2密钥重装攻击 | zuicy的博客</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zuicy的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">哼</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KRACK"><span class="nav-number">1.</span> <span class="nav-text">KRACK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WPA%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">WPA四次握手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86"><span class="nav-number">3.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#krack%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">krack攻击流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#krack%E6%94%BB%E5%87%BB%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="nav-number">5.</span> <span class="nav-text">krack攻击的危害</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zuicyzhu</p>
+  <div class="site-description" itemprop="description">哈</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zuicyzhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zuicy的博客">
+      <meta itemprop="description" content="哈">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="WPA2密钥重装攻击 | zuicy的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WPA2密钥重装攻击
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 20:42:46 / 修改时间：21:39:55" itemprop="dateCreated datePublished" datetime="2022-05-02T20:42:46+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[toc]</p>
+<h1 id="KRACK"><a href="#KRACK" class="headerlink" title="KRACK"></a>KRACK</h1><p>KRACK（取自“Key Reinstallation Attack”的缩写，中文：密钥重装攻击）是一种针对保护Wi-Fi连接的Wi-Fi Protected Access（WPA）协议的攻击手段，于2017年由比利时研究员Mathy Vanhoef和鲁汶大学Frank Piessens发现。Vanhoef的研究小组于2017年10月公布了此攻击的有关细节。</p>
+<p>此漏洞影响所有主要软件平台，包括Microsoft Windows、macOS、iOS、Android以及Linux。被Linux、Android和OpenBSD广泛使用的开源实现wpa_supplicant尤易受到影响，其可以被操纵安装全零的加密密钥，从而在中间人攻击中有效消除WPA2的防护能力。</p>
+<p><a target="_blank" rel="noopener" href="https://www.krackattacks.com/" title="官网">官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/KRACK" title="维基百科">维基百科</a></p>
+<p>这个攻击利用的主要利用的是WPA或WPA2协议在四次握手过程当中的漏洞，当客户端试图连接wifi时，四次握手过程被触发，其中有一个AP向客户端传输Msg3的过程，攻击者可以反复重放这一过程，导致nouce被重置，继而导致传输的数据可以被攻击者解密。</p>
+<h1 id="WPA四次握手"><a href="#WPA四次握手" class="headerlink" title="WPA四次握手"></a>WPA四次握手</h1><p>关于四次握手的具体流程可以参考网上关于wpa协议的文章。这里只会做一个简单的介绍。</p>
+<p>首先四次握手过程会产生一个叫做PTK的会话密钥，对于每个客户端来说都是唯一的，也就是说哪怕两个人是连接的同一个wifi，使用的PTk也是不同的。那么这个PTK怎么生成呢？只需要五个参数丢进去算就行了。分别是Anonce、Snonce、PMK、Amac和Smac，其中Anonce和Snonce是双方产生的随机数，PMK可以理解为wifi密码（其实还要和ap的SSID一起计算得到，但是因为SSID攻击者肯定有，所以可以认为就是wifi密码，便于理解），Amac和Smac则是双方的MAC地址。</p>
+<p>虽然是四次握手，但是PTK其实只用了两次就产生了，因为这次的漏洞主要是产生在三四次握手上，所以前两次就不细讲了。总之在Msg1和Msg2之后，双方就都有了一个相同的PTK了。</p>
+<p>然后第三次握手，AP会使用PTK加密传输一个GTK（用于组播的秘钥）过去给客户端。然后客户端这边收到组密钥之后就会回复一个Msg4过去，实际上就是一个ACK，如果AP没有收到这个Msg4，AP就会认为我这个Msg3丢了，因为我发一个东西过去都没人理我，那我肯定得重发一次，所以说只要AP这边没收到Msg4就会重传Msg3。只有成功接收到Msg4之后，AP才会安装PTK，否则就会重传Msg3，直到最后成功收到Msg4。</p>
+<p>但是在客户端这边，只要Msg4发出去了，<strong>无论AP是否收到</strong>，都会立刻认为四次握手已经结束了，可以正确通信了，就会<strong>安装PTK</strong>和GTK这两个密钥。</p>
+<p><img src="http://13.231.106.208/wp-content/uploads/2019/12/f1b231e92e578b9b.png"></p>
+<p>这就是四次握手的主要流程。当然在实际的Msg中还有MIC值，包序号等等保障安全性的数据，但是和这次漏洞的关系都不大。</p>
+<h1 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h1><p>既然有了秘钥，客户端就会用这个PTK来进行加密了对吧。虽然我们说PTK是秘钥，但其实加密的秘钥并不是使用的PTK，而是使用PTK和一个Nonce生成一个新的秘钥来加密，虽然叫做Nonce，但是这个Nonce并不是之前握手时的Anonce和Snonce。它比较类似tcp中的packet number，每发送一个报文，就会+1，发一个+1发一个+1，这样的话虽然我们只有一个PTK，但是每次加密使用的秘钥都是不同的，就大大提升了协议的安全性，防止了数学统计的可能。</p>
+<p>得到了秘钥之后与明文进行异或运算就生成了对应的密文。</p>
+<p><strong>这里需要注意一点的是，刚才说krack攻击可以导致密钥被重装继而nonce被重置，现在看一下这个加密过程，因为PTK是不变的，所以说如果nonce被重用的话，也就相当于密钥流被重用了。</strong></p>
+<h1 id="krack攻击流程"><a href="#krack攻击流程" class="headerlink" title="krack攻击流程"></a>krack攻击流程</h1><p>清楚了四次握手的过程以后，我们就可以来看一下krack的攻击过程了。</p>
+<ol>
+<li><p>首先客户端试图连接WI-FI，比如说正常的连接到了AP的信道6。</p></p>
+</li>
+<li><p>攻击者通过deauthtication洪水一类的无线儿攻击，断开客户端与AP的连接，被迫其下线。</p>
+</li>
+<li><p>客户端它发现自己掉线了以后，就会尝试重新去连接这个AP，这个时候呢，攻击者需要再次CSA一类的攻击，强制客户端连接上另一个信道，形成一个中间人攻击。但不进行任何数据的篡改，而是正常的进行转发。</p>
+</li>
+<li><p>在客户端和AP进行四次握手过程中，前三次不进行任何操作，在最后一次，客户端发出Msg4之后，攻击者拦截Msg4，不让它成功的发送给AP，前面说过，Msg4是一个关于Msg3的ACK，AP这边假如说没有收到这个ACK，就认为发的这个包丢掉了，会重新传输这个Msg3。</p>
+</li>
+<li><p>当客户端这边收到这个Msg3时，由于客户端这边之前已经传过一次Msg4了，所以说认为四次握手已经结束了，所以就安装了PTK，并且开始用PTK加密数据了，而这个时候客户端又收到了一个Msg3，在这里，IEEE规定，只要客户端收到了Msg3，就要回应一个Msg4来表示应答，但是由于我们已经安装了PTK了，所以我们回复的不再是一个简单的Msg4了，而是一个加密之后的Msg4，因为是加密后的第一个包，我们可以假设加密使用的nonce&#x3D;1，生成的秘钥为PTK1。同时，IEEE还规定，在重发这个Msg4后，还要重新安装PTK，并且将nonce重置，这样问题就来了，也就是说客户端本来下一个包应该使用nonce&#x3D;2生成的PTK2来加密了，但是现在nonce重置了，也就是说下一个包的秘钥还是PTK1。这样就产生了秘钥的重复使用。</p>
+</li>
+<li><p>现在我们来看看攻击者手上有什么，第一次发的未加密的Msg4、第二次发的使用PTK1加密的Msg4。很明显，根据前面说的加密只是将明文和秘钥简单的异或一下，现在攻击者有了明文和密文，那么PTK1肯定也就有了。</p>
+</li>
+<li><p>客户端发送数据包Data，根据第5步，我们知道这里使用的秘钥是PTK1，因此攻击者就可以使用PTK1去解密Data，至此，我们最终实现了数据的一个解密。</p>
+</li>
+</ol>
+<h1 id="krack攻击的危害"><a href="#krack攻击的危害" class="headerlink" title="krack攻击的危害"></a>krack攻击的危害</h1><p>虽然根据IEEE协议而言krack攻击是成立的，但是在实际实现中肯定不会是完全按照标准去实现的。这个漏洞在不同的平台上的危害也不同，首当其冲的是Linux和安卓系统，为什么是这两类呢，原因出在wpa_supplicant上，这个东西是一个wi-fi客户端的加密认证工具，在Linux上用的比较多，后来谷歌把它整合到安卓平台里了，在这个工具里，重发Msg3的时候不仅会清除了已经安装的密钥，而且直接安装了一个全零的加密密钥来进行代替，也就是说攻击者直接就可以知道你的PTK是0，完全丧失了安全性。</p>
+<p>而Windows系统遭受krack攻击的威胁就很小，Windows直接拒绝了Msg3的重传，从最一开始就堵死了krack攻击的流程，那么后边的步骤全都没有了。当然这样子不按照协议规定去做也不完全是好事，因为虽然在这里可能没出问题但可能在别的地方还会出问题，一般来说还是要按照协议实现更加保险。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/" rel="prev" title="WPA密码破解-字典攻击(python实现)">
+                  <i class="fa fa-chevron-left"></i> WPA密码破解-字典攻击(python实现)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/02/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/" rel="next" title="网络安全技术">
+                  网络安全技术 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
