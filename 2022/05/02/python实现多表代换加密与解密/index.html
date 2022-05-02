@@ -18,13 +18,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="一、原理 [toc]什么是多表代换？多表代换加密是相对于单表代换加密而言的， 单表代换是密码学中最基础的一种加密方式。在加密时用一张自制字母表上的字母来代替明文上的字母（比如说A——Z，B——D）来达到加密。移位密码也属于单表代换，只不过比较有规律，相当于集体向前或向后。 这种加密方法最容易被破解。破解方法为统计法。在英语中，最常用的字母为E，所以在密文中代替E 的字母出现的频率也最高，由此便可破">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python实现多表代换加密与解密">
 <meta property="og:url" content="http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/index.html">
-<meta property="og:site_name" content="zuicy的博客">
+<meta property="og:site_name" content="朱鱼鱼的小本本">
 <meta property="og:description" content="一、原理 [toc]什么是多表代换？多表代换加密是相对于单表代换加密而言的， 单表代换是密码学中最基础的一种加密方式。在加密时用一张自制字母表上的字母来代替明文上的字母（比如说A——Z，B——D）来达到加密。移位密码也属于单表代换，只不过比较有规律，相当于集体向前或向后。 这种加密方法最容易被破解。破解方法为统计法。在英语中，最常用的字母为E，所以在密文中代替E 的字母出现的频率也最高，由此便可破">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=46f7e2acda88d43fe4a499a01c77b97e/58ee3d6d55fbb2fbf9e21dcb434a20a44723dc1a.jpg">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://zuicy.party/wp-content/uploads/2019/03/20181117164916244.png">
 <meta property="article:published_time" content="2022-05-02T13:04:39.000Z">
 <meta property="article:modified_time" content="2022-05-02T13:39:31.885Z">
-<meta property="article:author" content="zuicyzhu">
+<meta property="article:author" content="zuicy">
 <meta property="article:tag" content="网络安全">
 <meta property="article:tag" content="大学课程">
 <meta name="twitter:card" content="summary">
@@ -50,7 +50,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/","path":"2022/05/02/python实现多表代换加密与解密/","title":"python实现多表代换加密与解密"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>python实现多表代换加密与解密 | zuicy的博客</title>
+<title>python实现多表代换加密与解密 | 朱鱼鱼的小本本</title>
   
 
 
@@ -80,10 +80,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">zuicy的博客</p>
+      <p class="site-title">朱鱼鱼的小本本</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">哼</p>
+      <p class="site-subtitle" itemprop="description">我好快乐，因为我是小熊软糖，小熊软糖~</p>
   </div>
 
   <div class="site-nav-right">
@@ -132,8 +132,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">zuicyzhu</p>
-  <div class="site-description" itemprop="description">哈</div>
+  <p class="site-author-name" itemprop="name">zuicy</p>
+  <div class="site-description" itemprop="description">哼~</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
@@ -193,16 +193,16 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zuicyzhu">
+      <meta itemprop="name" content="zuicy">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zuicy的博客">
-      <meta itemprop="description" content="哈">
+      <meta itemprop="name" content="朱鱼鱼的小本本">
+      <meta itemprop="description" content="哼~">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="python实现多表代换加密与解密 | zuicy的博客">
+      <meta itemprop="name" content="python实现多表代换加密与解密 | 朱鱼鱼的小本本">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -425,9 +425,9 @@ print(&quot;&quot;)
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">zuicyzhu</span>
+  <span class="author" itemprop="copyrightHolder">zuicy</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
