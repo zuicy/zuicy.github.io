@@ -119,6 +119,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zuicy"
+      src="/images/1.jpg">
   <p class="site-author-name" itemprop="name">zuicy</p>
   <div class="site-description" itemprop="description">哼~</div>
 </div>
@@ -126,13 +128,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -142,11 +144,20 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zuicy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zuicy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -155,10 +166,6 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -175,10 +182,137 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="zuicy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱鱼鱼的小本本">
+      <meta itemprop="description" content="哼~">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 朱鱼鱼的小本本">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/" class="post-title-link" itemprop="url">WPA2密钥重装攻击</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-02 20:42:46 / 修改时间：21:39:55" itemprop="dateCreated datePublished" datetime="2022-05-02T20:42:46+08:00">2022-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/WPA2%E5%AF%86%E9%92%A5%E9%87%8D%E8%A3%85%E6%94%BB%E5%87%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>[toc]</p>
+<h1 id="KRACK"><a href="#KRACK" class="headerlink" title="KRACK"></a>KRACK</h1><p>KRACK（取自“Key Reinstallation Attack”的缩写，中文：密钥重装攻击）是一种针对保护Wi-Fi连接的Wi-Fi Protected Access（WPA）协议的攻击手段，于2017年由比利时研究员Mathy Vanhoef和鲁汶大学Frank Piessens发现。Vanhoef的研究小组于2017年10月公布了此攻击的有关细节。</p>
+<p>此漏洞影响所有主要软件平台，包括Microsoft Windows、macOS、iOS、Android以及Linux。被Linux、Android和OpenBSD广泛使用的开源实现wpa_supplicant尤易受到影响，其可以被操纵安装全零的加密密钥，从而在中间人攻击中有效消除WPA2的防护能力。</p>
+<p><a target="_blank" rel="noopener" href="https://www.krackattacks.com/" title="官网">官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/KRACK" title="维基百科">维基百科</a></p>
+<p>这个攻击利用的主要利用的是WPA或WPA2协议在四次握手过程当中的漏洞，当客户端试图连接wifi时，四次握手过程被触发，其中有一个AP向客户端传输Msg3的过程，攻击者可以反复重放这一过程，导致nouce被重置，继而导致传输的数据可以被攻击者解密。</p>
+<h1 id="WPA四次握手"><a href="#WPA四次握手" class="headerlink" title="WPA四次握手"></a>WPA四次握手</h1><p>关于四次握手的具体流程可以参考网上关于wpa协议的文章。这里只会做一个简单的介绍。</p>
+<p>首先四次握手过程会产生一个叫做PTK的会话密钥，对于每个客户端来说都是唯一的，也就是说哪怕两个人是连接的同一个wifi，使用的PTk也是不同的。那么这个PTK怎么生成呢？只需要五个参数丢进去算就行了。分别是Anonce、Snonce、PMK、Amac和Smac，其中Anonce和Snonce是双方产生的随机数，PMK可以理解为wifi密码（其实还要和ap的SSID一起计算得到，但是因为SSID攻击者肯定有，所以可以认为就是wifi密码，便于理解），Amac和Smac则是双方的MAC地址。</p>
+<p>虽然是四次握手，但是PTK其实只用了两次就产生了，因为这次的漏洞主要是产生在三四次握手上，所以前两次就不细讲了。总之在Msg1和Msg2之后，双方就都有了一个相同的PTK了。</p>
+<p>然后第三次握手，AP会使用PTK加密传输一个GTK（用于组播的秘钥）过去给客户端。然后客户端这边收到组密钥之后就会回复一个Msg4过去，实际上就是一个ACK，如果AP没有收到这个Msg4，AP就会认为我这个Msg3丢了，因为我发一个东西过去都没人理我，那我肯定得重发一次，所以说只要AP这边没收到Msg4就会重传Msg3。只有成功接收到Msg4之后，AP才会安装PTK，否则就会重传Msg3，直到最后成功收到Msg4。</p>
+<p>但是在客户端这边，只要Msg4发出去了，<strong>无论AP是否收到</strong>，都会立刻认为四次握手已经结束了，可以正确通信了，就会<strong>安装PTK</strong>和GTK这两个密钥。</p>
+<p><img src="http://13.231.106.208/wp-content/uploads/2019/12/f1b231e92e578b9b.png"></p>
+<p>这就是四次握手的主要流程。当然在实际的Msg中还有MIC值，包序号等等保障安全性的数据，但是和这次漏洞的关系都不大。</p>
+<h1 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h1><p>既然有了秘钥，客户端就会用这个PTK来进行加密了对吧。虽然我们说PTK是秘钥，但其实加密的秘钥并不是使用的PTK，而是使用PTK和一个Nonce生成一个新的秘钥来加密，虽然叫做Nonce，但是这个Nonce并不是之前握手时的Anonce和Snonce。它比较类似tcp中的packet number，每发送一个报文，就会+1，发一个+1发一个+1，这样的话虽然我们只有一个PTK，但是每次加密使用的秘钥都是不同的，就大大提升了协议的安全性，防止了数学统计的可能。</p>
+<p>得到了秘钥之后与明文进行异或运算就生成了对应的密文。</p>
+<p><strong>这里需要注意一点的是，刚才说krack攻击可以导致密钥被重装继而nonce被重置，现在看一下这个加密过程，因为PTK是不变的，所以说如果nonce被重用的话，也就相当于密钥流被重用了。</strong></p>
+<h1 id="krack攻击流程"><a href="#krack攻击流程" class="headerlink" title="krack攻击流程"></a>krack攻击流程</h1><p>清楚了四次握手的过程以后，我们就可以来看一下krack的攻击过程了。</p>
+<ol>
+<li><p>首先客户端试图连接WI-FI，比如说正常的连接到了AP的信道6。</p></p>
+</li>
+<li><p>攻击者通过deauthtication洪水一类的无线儿攻击，断开客户端与AP的连接，被迫其下线。</p>
+</li>
+<li><p>客户端它发现自己掉线了以后，就会尝试重新去连接这个AP，这个时候呢，攻击者需要再次CSA一类的攻击，强制客户端连接上另一个信道，形成一个中间人攻击。但不进行任何数据的篡改，而是正常的进行转发。</p>
+</li>
+<li><p>在客户端和AP进行四次握手过程中，前三次不进行任何操作，在最后一次，客户端发出Msg4之后，攻击者拦截Msg4，不让它成功的发送给AP，前面说过，Msg4是一个关于Msg3的ACK，AP这边假如说没有收到这个ACK，就认为发的这个包丢掉了，会重新传输这个Msg3。</p>
+</li>
+<li><p>当客户端这边收到这个Msg3时，由于客户端这边之前已经传过一次Msg4了，所以说认为四次握手已经结束了，所以就安装了PTK，并且开始用PTK加密数据了，而这个时候客户端又收到了一个Msg3，在这里，IEEE规定，只要客户端收到了Msg3，就要回应一个Msg4来表示应答，但是由于我们已经安装了PTK了，所以我们回复的不再是一个简单的Msg4了，而是一个加密之后的Msg4，因为是加密后的第一个包，我们可以假设加密使用的nonce&#x3D;1，生成的秘钥为PTK1。同时，IEEE还规定，在重发这个Msg4后，还要重新安装PTK，并且将nonce重置，这样问题就来了，也就是说客户端本来下一个包应该使用nonce&#x3D;2生成的PTK2来加密了，但是现在nonce重置了，也就是说下一个包的秘钥还是PTK1。这样就产生了秘钥的重复使用。</p>
+</li>
+<li><p>现在我们来看看攻击者手上有什么，第一次发的未加密的Msg4、第二次发的使用PTK1加密的Msg4。很明显，根据前面说的加密只是将明文和秘钥简单的异或一下，现在攻击者有了明文和密文，那么PTK1肯定也就有了。</p>
+</li>
+<li><p>客户端发送数据包Data，根据第5步，我们知道这里使用的秘钥是PTK1，因此攻击者就可以使用PTK1去解密Data，至此，我们最终实现了数据的一个解密。</p>
+</li>
+</ol>
+<h1 id="krack攻击的危害"><a href="#krack攻击的危害" class="headerlink" title="krack攻击的危害"></a>krack攻击的危害</h1><p>虽然根据IEEE协议而言krack攻击是成立的，但是在实际实现中肯定不会是完全按照标准去实现的。这个漏洞在不同的平台上的危害也不同，首当其冲的是Linux和安卓系统，为什么是这两类呢，原因出在wpa_supplicant上，这个东西是一个wi-fi客户端的加密认证工具，在Linux上用的比较多，后来谷歌把它整合到安卓平台里了，在这个工具里，重发Msg3的时候不仅会清除了已经安装的密钥，而且直接安装了一个全零的加密密钥来进行代替，也就是说攻击者直接就可以知道你的PTK是0，完全丧失了安全性。</p>
+<p>而Windows系统遭受krack攻击的威胁就很小，Windows直接拒绝了Msg3的重传，从最一开始就堵死了krack攻击的流程，那么后边的步骤全都没有了。当然这样子不按照协议规定去做也不完全是好事，因为虽然在这里可能没出问题但可能在别的地方还会出问题，一般来说还是要按照协议实现更加保险。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/WPA%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-python%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/1.jpg">
       <meta itemprop="name" content="zuicy">
     </span>
 
@@ -319,7 +453,7 @@
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/vscode+plantuml%20%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E7%94%BB%E5%9B%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/1.jpg">
       <meta itemprop="name" content="zuicy">
     </span>
 
@@ -414,117 +548,8 @@ skinparam monochrome true //指定图片为黑白配色
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/%E5%A6%82%E4%BD%95%E5%9C%A8chromeos%E4%B8%8A%E4%BD%BF%E7%94%A8shadowsocks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zuicy">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="朱鱼鱼的小本本">
-      <meta itemprop="description" content="哼~">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 朱鱼鱼的小本本">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/02/%E5%A6%82%E4%BD%95%E5%9C%A8chromeos%E4%B8%8A%E4%BD%BF%E7%94%A8shadowsocks/" class="post-title-link" itemprop="url">如何在chroemos上使用shadowsocks</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-05-02 17:58:38 / 修改时间：21:37:06" itemprop="dateCreated datePublished" datetime="2022-05-02T17:58:38+08:00">2022-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/chroembook/" itemprop="url" rel="index"><span itemprop="name">chroembook</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/chroembook/%E7%BF%BB%E5%A2%99/" itemprop="url" rel="index"><span itemprop="name">翻墙</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/05/02/%E5%A6%82%E4%BD%95%E5%9C%A8chromeos%E4%B8%8A%E4%BD%BF%E7%94%A8shadowsocks/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/05/02/%E5%A6%82%E4%BD%95%E5%9C%A8chromeos%E4%B8%8A%E4%BD%BF%E7%94%A8shadowsocks/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>众所周知 chromeos 大量使用场景都是需要 ss，一般来说有几个方案</p>
-<h1 id="一-ss-chromeapp（不推荐）"><a href="#一-ss-chromeapp（不推荐）" class="headerlink" title="一.ss-chromeapp（不推荐）"></a>一.ss-chromeapp（不推荐）</h1><p>chromeos app 商店就可以下载到 ss-chromeapp 客户端，配合chrome插件 proxy switchOmega，基本就可以达到90%的效果了。为什么是90%呢？因为这只能让你在访问网页的时候生效，对于下载的安卓app是无效的。而且由于未知原因无法支持chromeos自带的google drive。没有google drive的chromebook是木得灵魂的不是吗。同时ss-chromeapp没有很好的后台提示，经常会莫名其妙被杀后台。</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN" title="Proxy SwitchyOmega">Proxy SwitchyOmega</a><br><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/shadowsocks/fnhhahhihediajgefcnlpdmnogndblbi?hl=zh-CN" title="ss-chromeapp">ss-chromeapp</a></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
-<li>进入SwitchyOmega选项，点击左边栏新建情景模式，名称自选，选择代理服务器模式。</li>
-<li>设置刚刚新建的情景模式，选择代理协议SOCK5，代理服务器为本地地址127.0.0.1，端口与SS的本地代理端口相同，默认为1080。</li>
-<li>保存后再次新建，选择自动切换模式，规则列表规则选之前配置好的SS，规则列表格式选AutoProxy，规则列表网址，填 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a> ，然后点立即更新情景模式。正文中出现地址列表即为成功。</li>
-<li>需要科学上网时选择刚刚这个自动切换模式即可。<br>也可以参考这一篇github上的教程<a target="_blank" rel="noopener" href="https://github.com/FelisCatus/SwitchyOmega/wiki/GFWList#%E6%9B%B4%E6%96%B0%E8%A7%84%E5%88%99%E5%88%97%E8%A1%A8" title="SwitchyOmega 配合 GFWList 使用">SwitchyOmega 配合 GFWList 使用</a></li>
-</ol>
-<h1 id="二-dev模式（不推荐）"><a href="#二-dev模式（不推荐）" class="headerlink" title="二.dev模式（不推荐）"></a>二.dev模式（不推荐）</h1><p>开启 dev 模式，安装 python 的 ss 客户端。这个就没什么好说的了。linux下ss的教程一搜一大堆了。</p>
-<h1 id="三-使用安卓版的ss客户端（推荐）"><a href="#三-使用安卓版的ss客户端（推荐）" class="headerlink" title="三.使用安卓版的ss客户端（推荐）"></a>三.使用安卓版的ss客户端（推荐）</h1><ul>
-<li>首先你的 chromeos 必须支持 play 商店安装安卓应用。<br>1.想办法从play商店上下载shadowsocks，并配置。<br>2.在 chrome 地址栏输入 chrome:&#x2F;&#x2F;flags#arc-vpn 改为 Enabled这时候点右下角弹出的窗口可以看到 vpn 连接已经激活了。并且可实现全应用覆盖。具体的规则也和安卓版本一样，可以自行设定。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
