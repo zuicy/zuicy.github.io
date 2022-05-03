@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。 本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。 Waline不少使用Hexo博主所用的评论系统是Valine，NexT也天然支持（配置也就简单）。但是它存在安全性问题，而Waline就是在Valine的基础上衍生出来的，同时解决了Valine的安全性问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo: Next 主题使用 Waline 评论系统">
+<meta property="og:url" content="http://example.com/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="朱鱼鱼的小本本">
+<meta property="og:description" content="文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。 本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。 Waline不少使用Hexo博主所用的评论系统是Valine，NexT也天然支持（配置也就简单）。但是它存在安全性问题，而Waline就是在Valine的基础上衍生出来的，同时解决了Valine的安全性问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-03T15:51:00.000Z">
+<meta property="article:modified_time" content="2022-05-03T16:57:14.886Z">
+<meta property="article:author" content="zuicy">
+<meta property="article:tag" content="工具教程">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/","path":"2022/05/03/Hexo_Next_主题使用_Waline评论系统/","title":"Hexo: Next 主题使用 Waline 评论系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo: Next 主题使用 Waline 评论系统 | 朱鱼鱼的小本本</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">朱鱼鱼的小本本</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我好快乐，因为我是小熊软糖，小熊软糖~</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Waline"><span class="nav-number">1.</span> <span class="nav-text">Waline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0NexT%E5%88%B0v8-5-0"><span class="nav-number">2.</span> <span class="nav-text">更新NexT到v8.5.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Waline"><span class="nav-number">3.</span> <span class="nav-text">安装Waline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeanCloud%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">LeanCloud配置评论数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vercl%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.2.</span> <span class="nav-text">Vercl安装服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">在Hexo Next主题中配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.4.</span> <span class="nav-text">登录服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9F%9F%E5%90%8D"><span class="nav-number">3.5.</span> <span class="nav-text">自定义服务端域名</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zuicy"
+      src="/images/1.jpg">
+  <p class="site-author-name" itemprop="name">zuicy</p>
+  <div class="site-description" itemprop="description">哼~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zuicy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zuicy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="zuicy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱鱼鱼的小本本">
+      <meta itemprop="description" content="哼~">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo: Next 主题使用 Waline 评论系统 | 朱鱼鱼的小本本">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo: Next 主题使用 Waline 评论系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-03 23:51:00" itemprop="dateCreated datePublished" datetime="2022-05-03T23:51:00+08:00">2022-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-04 00:57:14" itemprop="dateModified" datetime="2022-05-04T00:57:14+08:00">2022-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">工具教程</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。</p>
+<p>本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。</p>
+<h1 id="Waline"><a href="#Waline" class="headerlink" title="Waline"></a>Waline</h1><p>不少使用Hexo博主所用的评论系统是Valine，NexT也天然支持（配置也就简单）。但是它存在<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038175985">安全性问题</a>，而Waline就是在Valine的基础上衍生出来的，同时解决了Valine的安全性问题</p>
+<span id="more"></span>
+<p><a target="_blank" rel="noopener" href="https://waline.js.org/advanced/intro.html#%E7%89%B9%E6%80%A7">Waline介绍</a></p>
+<h1 id="更新NexT到v8-5-0"><a href="#更新NexT到v8-5-0" class="headerlink" title="更新NexT到v8.5.0"></a>更新NexT到v8.5.0</h1><p>next有两个repo: <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a> 和 <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></p>
+<p>简单来说，问题就是 theme-next 团队的 owner 始终拒绝向其它任何团队成员提供足够的权限，且 owner 本人自 2019 年 10 月起已连续半年不在线，导致其它活跃的团队成员无法管理仓库，也无法邀请新的成员。<br>由于对 theme-next 团队的未来不抱有期望，我作为 theme-next 的主要贡献者，自 2020 年 4 月起停止为旧的仓库贡献代码，并创建了新的组织，以确保维护工作正常进行。</p>
+<p>按照官方推荐的方式更新到v8.5.0： <a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/getting-started/upgrade.html">https://theme-next.js.org/docs/getting-started/upgrade.html</a></p>
+<h1 id="安装Waline"><a href="#安装Waline" class="headerlink" title="安装Waline"></a>安装Waline</h1><h2 id="LeanCloud配置评论数据库"><a href="#LeanCloud配置评论数据库" class="headerlink" title="LeanCloud配置评论数据库"></a>LeanCloud配置评论数据库</h2><p>Waline 和 Valine 一样，也是支持基于 LeanCloud 作为数据存储的：</p>
+<ol>
+<li>我们需要<a target="_blank" rel="noopener" href="https://console.leancloud.app/register">注册一个 Leancloud 国际版的账号</a>，如果是国内版，域名需要备案，会比较麻烦。</li>
+<li>注册完成后，登录，然后我们找到创建应用。</li>
+<li>填写你的应用名称,名称可以自己定义，然后，下面选择开发版点击创建。</li>
+<li>然后点击应用进入设置。点击应用凭证，取得我们 AppKey 、App id 、以及 MasterKey。</li>
+</ol>
+<h2 id="Vercl安装服务端"><a href="#Vercl安装服务端" class="headerlink" title="Vercl安装服务端"></a>Vercl安装服务端</h2><p>首先，点击一键部署：</p>
+<p><a target="_blank" rel="noopener" href="https://vercel.com/new/clone?repository-url=https://github.com/walinejs/waline/tree/main/example">一键部署Vercel</a></p>
+<p>应该需要注册一个账号，支持使用 Github 账号直接登录</p>
+<p>登录后重新点进来，点击 Create</p>
+<p>然后等待下面 Deploy 构建完成，点击 Go to Dashboard</p>
+<p>找到 Settings &#x3D;&gt; Environment Variables，配置环境变量</p>
+<p>我们需要配置三个环境变量，对应如下表：</p>
+<table>
+<thead>
+<tr>
+<th>Lean Cloud</th>
+<th>Vercel Environment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AppID</td>
+<td>LEAN_ID</td>
+</tr>
+<tr>
+<td>AppKey</td>
+<td>LEAN_KEY</td>
+</tr>
+<tr>
+<td>MasterKey</td>
+<td>LEAN_MASTER_KEY</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>如果你使用 LeanCloud 国内版，请额外配置 LEAN_SERVER 环境变量，值为你绑定好的域名。</p>
+</blockquote>
+<p>为了使环境变量生效，我们需要重新构建一次。在上方找到 Deployments ，选择第一个右边的三个点，点击 Redeploy 。</p>
+<p>等待其构建结束，然后记住 DOMAINS 中的域名地址。</p>
+<h2 id="在Hexo-Next主题中配置"><a href="#在Hexo-Next主题中配置" class="headerlink" title="在Hexo Next主题中配置"></a>在Hexo Next主题中配置</h2><p>由于 Next 主题中并不自带 Waline 的评论配置，我们需要安装官方提供的插件。在 Hexo 根目录执行：</p>
+<p><code>npm install @waline/hexo-next</code></p>
+<p>找到 Next 的主题配置文件，在最后加上</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Waline</span></span><br><span class="line"><span class="comment"># For more information: https://waline.js.org, https://github.com/walinejs/waline</span></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-pearl.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">    <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">请文明评论呀</span> <span class="comment"># 评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="comment"># Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="comment"># Set custom library cdn url</span></span><br></pre></td></tr></table></figure>
+<p>重新部署 Hexo ，就可以看到结果了。</p>
+<h2 id="登录服务端"><a href="#登录服务端" class="headerlink" title="登录服务端"></a>登录服务端</h2><p>由于 Waline 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
+<p>找到评论框，点击 登录 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。</p>
+<p>注册好，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
+<h2 id="自定义服务端域名"><a href="#自定义服务端域名" class="headerlink" title="自定义服务端域名"></a>自定义服务端域名</h2><p>在Vercl中点击顶部的 Settings - Domains 进入域名配置页</p>
+<p>输入需要绑定的域名并点击 Add</p>
+<p>在域名服务器商处添加新的 CNAME 解析记录</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CNAME</td>
+<td>example</td>
+<td>cname.vercel-dns.com</td>
+</tr>
+</tbody></table>
+<p>等待生效，你可以通过自己的域名来访问了</p>
+<ul>
+<li>评论系统：example.yourdomain.com</li>
+<li>评论管理：example.yourdomain.com&#x2F;ui</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" rel="tag"># 工具教程</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/03/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="hexo搭建个人博客">
+                  <i class="fa fa-chevron-left"></i> hexo搭建个人博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zuicy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"}</script>
+<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
