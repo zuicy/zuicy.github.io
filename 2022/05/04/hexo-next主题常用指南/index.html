@@ -20,25 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"algolia":{"appID":"0WKOTIQBSM","apiKey":"de65ab0cf953c5c7e69441001f0cf7e4","indexName":"zuicyblog","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="哼~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="朱鱼鱼的小本本">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="设置多个同级分类在hexo中，categories分类如果直接写成下面的形式 categories:     - 分类1    - 分类2 那么是和下面的写法不等价的 categories:     - 分类2    - 分类1 hexo会认为第一种分类2是分类1的子分类，第二种是分类1是分类2的子分类，在分类目录下会生成两个不同的分类目录。因此，如果想要定义分类1和分类2为同级分类，应该使用如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo&amp;next主题常用指南">
+<meta property="og:url" content="http://example.com/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="朱鱼鱼的小本本">
-<meta property="og:description" content="哼~">
+<meta property="og:description" content="设置多个同级分类在hexo中，categories分类如果直接写成下面的形式 categories:     - 分类1    - 分类2 那么是和下面的写法不等价的 categories:     - 分类2    - 分类1 hexo会认为第一种分类2是分类1的子分类，第二种是分类1是分类2的子分类，在分类目录下会生成两个不同的分类目录。因此，如果想要定义分类1和分类2为同级分类，应该使用如下">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/read_more_button.png">
+<meta property="article:published_time" content="2022-05-04T08:46:03.000Z">
+<meta property="article:modified_time" content="2022-05-04T10:20:45.804Z">
 <meta property="article:author" content="zuicy">
+<meta property="article:tag" content="工具教程">
+<meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/read_more_button.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/","path":"2022/05/04/hexo-next主题常用指南/","title":"hexo&next主题常用指南"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>朱鱼鱼的小本本</title>
+<title>hexo&next主题常用指南 | 朱鱼鱼的小本本</title>
   
 
 
@@ -68,7 +74,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">朱鱼鱼的小本本</h1>
+      <p class="site-title">朱鱼鱼的小本本</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">我好快乐，因为我是小熊软糖，小熊软糖~</p>
@@ -124,7 +130,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E5%90%8C%E7%BA%A7%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">设置多个同级分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text">在文章中引用图片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">本地引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.1.</span> <span class="nav-text">绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.2.</span> <span class="nav-text">相对路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN%E6%88%96%E5%9B%BE%E5%BA%8A%E5%BC%95%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">CDN或图床引用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A6%96%E9%A1%B5%E6%98%BE%E7%A4%BA%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87%E6%8C%89%E9%92%AE"><span class="nav-number">3.</span> <span class="nav-text">首页显示阅读全文按钮</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8-Hexo-%E7%9A%84%E5%8D%9A%E6%96%87%E4%B8%AD%E5%BC%95%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%87%E7%AB%A0"><span class="nav-number">4.</span> <span class="nav-text">在 Hexo 的博文中引用自己的文章</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -195,117 +202,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="zuicy">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="朱鱼鱼的小本本">
-      <meta itemprop="description" content="哼~">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 朱鱼鱼的小本本">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Hexo:next主题使用Algolia增加搜索功能</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-05-04 19:21:20 / 修改时间：19:28:02" itemprop="dateCreated datePublished" datetime="2022-05-04T19:21:20+08:00">2022-05-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">工具教程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Algolia"><a href="#Algolia" class="headerlink" title="Algolia"></a>Algolia</h1><p>Algolia是一家美国的创业公司，通过SaaS（软件即服务）模式提供网络搜索产品。Algolia使用外部托管的搜索引擎为客户的网站提供网络搜索服务。产品只需索引客户的网站里的内容，因此搜索任务要简单得多。</p>
-<p>Algolia还会通过各种API提供其搜索服务。Rest API提供了搜索、分析和监视三个基本功能，有10种计算机语言和平台可供客户端使用，包括Java、iOS和Android。为了更好的在Web端使用，Algolia集成了四个框架——Ruby on Rails、Symfony、Django和Laravel。Algolia还提供一些UI库选项来让用户选择他们喜欢的用户界面。除了这些产品，Algolia还与其他开源和第三方软件集成了Wordpress和Magento等服务。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,13 +226,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 朱鱼鱼的小本本">
+      <meta itemprop="name" content="hexo&next主题常用指南 | 朱鱼鱼的小本本">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">hexo&next主题常用指南</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          hexo&next主题常用指南
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -372,21 +279,37 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="设置多个同级分类"><a href="#设置多个同级分类" class="headerlink" title="设置多个同级分类"></a>设置多个同级分类</h1><p>在hexo中，categories分类如果直接写成下面的形式</p>
+        <h1 id="设置多个同级分类"><a href="#设置多个同级分类" class="headerlink" title="设置多个同级分类"></a>设置多个同级分类</h1><p>在hexo中，categories分类如果直接写成下面的形式</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">    - 分类1</span><br><span class="line">    - 分类2</span><br></pre></td></tr></table></figure>
 <p>那么是和下面的写法不等价的</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">    - 分类2</span><br><span class="line">    - 分类1</span><br></pre></td></tr></table></figure>
 <p>hexo会认为第一种分类2是分类1的子分类，第二种是分类1是分类2的子分类，在分类目录下会生成两个不同的分类目录。<br>因此，如果想要定义分类1和分类2为同级分类，应该使用如下写法。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">    - [分类1]</span><br><span class="line">    - [分类2]</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<span id="more"></span>
+<h1 id="在文章中引用图片"><a href="#在文章中引用图片" class="headerlink" title="在文章中引用图片"></a>在文章中引用图片</h1><h2 id="本地引用"><a href="#本地引用" class="headerlink" title="本地引用"></a>本地引用</h2><h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source&#x2F;images文件夹中，通过markdown语法访问它们。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">图片</span>](<span class="link">/images/image.jpg</span>)</span><br></pre></td></tr></table></figure>
+<p>图片既可以在首页内容中访问到，也可以在文章正文中访问到。</p>
+<h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><p>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置_config.yml来生成。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令$ hexo new post_name，在source&#x2F;_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">图片</span>](<span class="link">image.jpg</span>)</span><br></pre></td></tr></table></figure>
+<p>上述是markdown的引用方式，图片只能在文章中显示，但无法在首页中正常显示。</p>
+<p>如果希望图片在文章和首页中同时显示，可以使用标签插件语法。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% asset_img image.jpg This is an image %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDN或图床引用"><a href="#CDN或图床引用" class="headerlink" title="CDN或图床引用"></a>CDN或图床引用</h2><p>除了在本地存储图片，还可以将图片上传到一些CDN服务和图床服务，直接使用url引用即可。</p>
+<h1 id="首页显示阅读全文按钮"><a href="#首页显示阅读全文按钮" class="headerlink" title="首页显示阅读全文按钮"></a>首页显示阅读全文按钮</h1><p>在首页的时候，默认next会按照时间顺序展示文章的所有内容，这就会导致首页很长很大，同时也很难观赏，基本就是看最新的一个博客了，因此，需要使用如下图的阅读全文按钮来让文章在首页显示的比较简短。<br><img src="/../images/read_more_button.png" alt="阅读全文按钮"><br>next最新版默认在配置中已经打开了配置。因此，我们只需要直接在正文中我们想要展示在首页的内容后面加上<code>&lt;!-- more --&gt;</code>即可。</p>
+<p><a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/theme-settings/posts">官方文档</a></p>
+<h1 id="在-Hexo-的博文中引用自己的文章"><a href="#在-Hexo-的博文中引用自己的文章" class="headerlink" title="在 Hexo 的博文中引用自己的文章"></a>在 Hexo 的博文中引用自己的文章</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link 文件名(不要后缀) 文章别名(可选) %&#125;</span><br></pre></td></tr></table></figure>
+<p>其中文件名指的是 Markdown 文件的文件名，例如你的博客中有一篇文件名为 HelloWorld.md 的博文，那你就可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link HelloWorld %&#125;</span><br></pre></td></tr></table></figure>
+<p>来引用。Hexo 会自动将这篇博文的标题显示在文章中，并带上正确的链接。当然，你也可以给链接使用一个另外的名字，比如 “我的 HelloWorld”：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link HelloWorld 我的HelloWorld %&#125;</span><br></pre></td></tr></table></figure>
+<p>文件名这一项是可以带上目录名的，比如 HelloWorld.md 这个文件放在_posts&#x2F;hello 这个目录，那你引用的时候需要跟上目录名，否则会引用不到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% post_link hello/HelloWorld %&#125;</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -394,116 +317,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" rel="tag"># 工具教程</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="zuicy">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="朱鱼鱼的小本本">
-      <meta itemprop="description" content="哼~">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 朱鱼鱼的小本本">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">Hexo: Next 主题使用 Waline 评论系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-03 23:51:00" itemprop="dateCreated datePublished" datetime="2022-05-03T23:51:00+08:00">2022-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-04 17:54:27" itemprop="dateModified" datetime="2022-05-04T17:54:27+08:00">2022-05-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">工具教程</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。</p>
-<p>本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。</p>
-<h1 id="为啥要用Waline"><a href="#为啥要用Waline" class="headerlink" title="为啥要用Waline"></a>为啥要用Waline</h1><p>不少使用Hexo博主所用的评论系统是Valine，NexT也天然支持（配置也就简单）。但是它存在<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038175985">安全性问题</a>，而Waline就是在Valine的基础上衍生出来的，同时解决了Valine的安全性问题<br><a target="_blank" rel="noopener" href="https://waline.js.org/advanced/intro.html#%E7%89%B9%E6%80%A7">Waline介绍</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="prev" title="Hexo: Next 主题使用 Waline 评论系统">
+                  <i class="fa fa-chevron-left"></i> Hexo: Next 主题使用 Waline 评论系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" rel="next" title="Hexo:next主题使用Algolia增加搜索功能">
+                  Hexo:next主题使用Algolia增加搜索功能 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -511,10 +343,9 @@
 
 
 
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
+
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -553,7 +384,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/"}</script>
 <link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"algolia":{"appID":"0WKOTIQBSM","apiKey":"de65ab0cf953c5c7e69441001f0cf7e4","indexName":"zuicyblog","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。 本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。 为啥要用Waline不少使用Hexo博主所用的评论系统是Valine，NexT也天然支持（配置也就简单）。但是它存在安全性问题，而Waline就是在Valine的基础上衍生出来的，同时解决了Valine的安全性问题Waline">
 <meta property="og:type" content="article">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。 本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。 为啥要用Waline不少使用Hexo博主所用的评论系统是Valine，NexT也天然支持（配置也就简单）。但是它存在安全性问题，而Waline就是在Valine的基础上衍生出来的，同时解决了Valine的安全性问题Waline">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-03T15:51:00.000Z">
-<meta property="article:modified_time" content="2022-05-03T17:20:32.025Z">
+<meta property="article:modified_time" content="2022-05-04T09:54:27.339Z">
 <meta property="article:author" content="zuicy">
 <meta property="article:tag" content="工具教程">
 <meta property="article:tag" content="Hexo">
@@ -80,6 +80,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -87,12 +88,34 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">16</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -118,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E5%95%A5%E8%A6%81%E7%94%A8Waline"><span class="nav-number">1.</span> <span class="nav-text">为啥要用Waline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0NexT%E5%88%B0v8-5-0"><span class="nav-number">2.</span> <span class="nav-text">更新NexT到v8.5.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Waline"><span class="nav-number">3.</span> <span class="nav-text">安装Waline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeanCloud%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">LeanCloud配置评论数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vercl%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.2.</span> <span class="nav-text">Vercl安装服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">在Hexo Next主题中配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.4.</span> <span class="nav-text">登录服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9F%9F%E5%90%8D"><span class="nav-number">3.5.</span> <span class="nav-text">自定义服务端域名</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E5%95%A5%E8%A6%81%E7%94%A8Waline"><span class="nav-number">1.</span> <span class="nav-text">为啥要用Waline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0NexT%E5%88%B0v8-5-0"><span class="nav-number">2.</span> <span class="nav-text">更新NexT到v8.5.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Waline"><span class="nav-number">3.</span> <span class="nav-text">安装Waline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeanCloud%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">LeanCloud配置评论数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vercl%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.2.</span> <span class="nav-text">Vercl安装服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">在Hexo Next主题中配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.4.</span> <span class="nav-text">登录服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9F%9F%E5%90%8D"><span class="nav-number">3.5.</span> <span class="nav-text">自定义服务端域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%A2%9E%E5%8A%A0%E9%80%9A%E7%9F%A5%E5%8A%9F%E8%83%BD"><span class="nav-number">3.6.</span> <span class="nav-text">服务端增加通知功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5"><span class="nav-number">3.6.1.</span> <span class="nav-text">增加邮件通知</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -133,7 +156,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -224,7 +247,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-04 01:20:32" itemprop="dateModified" datetime="2022-05-04T01:20:32+08:00">2022-05-04</time>
+      <time title="修改时间：2022-05-04 17:54:27" itemprop="dateModified" datetime="2022-05-04T17:54:27+08:00">2022-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -309,8 +332,11 @@
 <h2 id="在Hexo-Next主题中配置"><a href="#在Hexo-Next主题中配置" class="headerlink" title="在Hexo Next主题中配置"></a>在Hexo Next主题中配置</h2><p>由于 Next 主题中并不自带 Waline 的评论配置，我们需要安装官方提供的插件。在 Hexo 根目录执行：</p>
 <p><code>npm install @waline/hexo-next</code></p>
 <p>找到 Next 的主题配置文件，在最后加上</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Waline</span></span><br><span class="line"><span class="comment"># For more information: https://waline.js.org, https://github.com/walinejs/waline</span></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-pearl.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">    <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">请文明评论呀</span> <span class="comment"># 评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="comment"># Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="comment"># Set custom library cdn url</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Waline</span></span><br><span class="line"><span class="comment"># For more information: https://waline.js.org, https://github.com/walinejs/waline</span></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-pearl.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">    <span class="attr">locale:</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">请文明评论呀</span> <span class="comment"># 评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="comment"># Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="comment"># Set custom library cdn url</span></span><br></pre></td></tr></table></figure>
 <p>重新部署 Hexo ，就可以看到结果了。</p>
+<blockquote>
+<p>serverURL需要写成<a target="_blank" rel="noopener" href="https://waline-server-pearl.vercel.app这样,否则首页的显示评论数量会有问题/">https://waline-server-pearl.vercel.app这样，否则首页的显示评论数量会有问题</a></p>
+</blockquote>
 <h2 id="登录服务端"><a href="#登录服务端" class="headerlink" title="登录服务端"></a>登录服务端</h2><p>由于 Waline 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
 <p>找到评论框，点击 登录 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。</p>
 <p>注册好，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
@@ -336,7 +362,13 @@
 <li>评论系统：example.yourdomain.com</li>
 <li>评论管理：example.yourdomain.com&#x2F;ui</li>
 </ul>
+<h2 id="服务端增加通知功能"><a href="#服务端增加通知功能" class="headerlink" title="服务端增加通知功能"></a>服务端增加通知功能</h2><p><a target="_blank" rel="noopener" href="https://waline.js.org/guide/server/notification.html#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5">官方文档</a></p>
+<h3 id="增加邮件通知"><a href="#增加邮件通知" class="headerlink" title="增加邮件通知"></a>增加邮件通知</h3><p>在服务端增加以下环境变量，增加后从新部署即可</p>
+<p>邮件通知需要配置以下环境变量:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SMTP_SERVICE: SMTP 邮件发送服务提供商。</span><br><span class="line"></span><br><span class="line">SMTP_USER: SMTP 邮件发送服务的用户名，一般为登录邮箱。</span><br><span class="line"></span><br><span class="line">SMTP_PASS: SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱(例如 163)是单独的 SMTP 密码。</span><br><span class="line"></span><br><span class="line">SITE_NAME: 网站名称，用于在消息中显示。</span><br><span class="line"></span><br><span class="line">SITE_URL: 网站地址，用于在消息中显示。</span><br><span class="line"></span><br><span class="line">AUTHOR_EMAIL: 博主邮箱，用来接收新评论通知。如果是博主发布的评论则不进行提醒通知。</span><br></pre></td></tr></table></figure>
 
+<p>以下是选填的环境变量:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SENDER_NAME: 自定义发送邮件的发件人</span><br><span class="line"></span><br><span class="line">SENDER_EMAIL: 自定义发送邮件的发件地址</span><br><span class="line"></span><br><span class="line">MAIL_SUBJECT: 自定义评论回复邮件标题</span><br><span class="line"></span><br><span class="line">MAIL_TEMPLATE: 自定义评论回复邮件内容</span><br><span class="line"></span><br><span class="line">MAIL_SUBJECT_ADMIN: 自定义新评论通知邮件标题</span><br><span class="line"></span><br><span class="line">MAIL_TEMPLATE_ADMIN: 自定义新评论通知邮件内容</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -358,6 +390,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/05/04/hexo-next%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E6%8C%87%E5%8D%97/" rel="next" title="hexo&next主题常用指南">
+                  hexo&next主题常用指南 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -396,6 +431,8 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.0/dist/algoliasearch-lite.umd.js" integrity="sha256-UcrGMMl88PT0z5gvotNiqA7H30f1UJTUL9ZHey6i9jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.40.5/dist/instantsearch.production.min.js" integrity="sha256-CzAaf9BTgvv6RaF+W1nW5duR5M+vXeZ0tofFuEfJ7ms=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
 
 
 
@@ -406,7 +443,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.zuicy.party","cssUrl":"//unpkg.com/@waline/client@v2/dist/waline.css","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"commentCount":true,"pageview":false,"avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/05/03/Hexo_Next_%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8_Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"}</script>
 <link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
