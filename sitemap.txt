@@ -1,3 +1,4 @@
+https://www.zuicy.party/2022/05/06/TeamSpeak%E6%90%AD%E5%BB%BA%E5%BC%80%E9%BB%91%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://www.zuicy.party/2022/05/03/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/
 https://www.zuicy.party/2022/05/04/Hexo-next%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8Algolia%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/
 https://www.zuicy.party/2022/05/02/python%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%A1%A8%E4%BB%A3%E6%8D%A2%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/
@@ -23,6 +24,7 @@ https://www.zuicy.party/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/
 https://www.zuicy.party/tags/chroembook/
 https://www.zuicy.party/tags/%E7%BF%BB%E5%A2%99/
 https://www.zuicy.party/tags/Hexo/
+https://www.zuicy.party/tags/TeamSpeak%E6%90%AD%E5%BB%BA%E5%BC%80%E9%BB%91%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://www.zuicy.party/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/
 https://www.zuicy.party/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/
 https://www.zuicy.party/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/
