@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.zuicy.party/2022/05/23/hexo%E9%85%8D%E7%BD%AEvscode%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98markdown%E5%9B%BE%E7%89%87/</loc>
+    
+    <lastmod>2022-05-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zuicy.party/2022/05/16/php%E4%B8%AD%E7%9A%84urlencode/</loc>
     
     <lastmod>2022-05-22</lastmod>
@@ -246,6 +255,20 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://www.zuicy.party/tags/hexo/</loc>
+    <lastmod>2022-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zuicy.party/tags/vscode/</loc>
+    <lastmod>2022-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -285,6 +308,20 @@
   
   <url>
     <loc>https://www.zuicy.party/categories/PHP/</loc>
+    <lastmod>2022-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zuicy.party/categories/hexo/</loc>
+    <lastmod>2022-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zuicy.party/categories/vscode/</loc>
     <lastmod>2022-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

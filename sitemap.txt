@@ -1,3 +1,4 @@
+https://www.zuicy.party/2022/05/23/hexo%E9%85%8D%E7%BD%AEvscode%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98markdown%E5%9B%BE%E7%89%87/
 https://www.zuicy.party/2022/05/16/php%E4%B8%AD%E7%9A%84urlencode/
 https://www.zuicy.party/2022/05/06/TeamSpeak%E6%90%AD%E5%BB%BA%E5%BC%80%E9%BB%91%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://www.zuicy.party/2022/05/03/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/
@@ -27,9 +28,13 @@ https://www.zuicy.party/tags/%E7%BF%BB%E5%A2%99/
 https://www.zuicy.party/tags/Hexo/
 https://www.zuicy.party/tags/TeamSpeak%E6%90%AD%E5%BB%BA%E5%BC%80%E9%BB%91%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://www.zuicy.party/tags/PHP/
+https://www.zuicy.party/tags/hexo/
+https://www.zuicy.party/tags/vscode/
 https://www.zuicy.party/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/
 https://www.zuicy.party/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/
 https://www.zuicy.party/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/
 https://www.zuicy.party/categories/chroembook/
 https://www.zuicy.party/categories/%E7%BF%BB%E5%A2%99/
 https://www.zuicy.party/categories/PHP/
+https://www.zuicy.party/categories/hexo/
+https://www.zuicy.party/categories/vscode/
