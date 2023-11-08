@@ -28,7 +28,7 @@
 <meta property="og:description" content="信息安全概述信息和信息安全信息：信息是对事物不确定性的度量，可用信息量来描述 信息技术：应用在信息加工和处理过程中的科学、技术与工程的训练方法和管理技巧及应用 信息安全：使信息资产远离风险的一切手段和方法。 信息安全">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-02T12:44:29.000Z">
-<meta property="article:modified_time" content="2022-05-03T16:56:39.291Z">
+<meta property="article:modified_time" content="2023-11-08T08:55:15.885Z">
 <meta property="article:author" content="zuicy">
 <meta property="article:tag" content="网络安全">
 <meta property="article:tag" content="大学课程">
@@ -247,7 +247,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-04 00:56:39" itemprop="dateModified" datetime="2022-05-04T00:56:39+08:00">2022-05-04</time>
+      <time title="修改时间：2023-11-08 16:55:15" itemprop="dateModified" datetime="2023-11-08T16:55:15+08:00">2023-11-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -399,7 +399,7 @@
 <li>UDP劫持</li>
 </ol>
 <h4 id="应用层协议的威胁"><a href="#应用层协议的威胁" class="headerlink" title="应用层协议的威胁"></a>应用层协议的威胁</h4><p><strong>1.DNS</strong></p>
-<p><strong>DNS缓存毒化</strong><br>    攻击者掌控有一个自己的域（attack.net）和一个已被攻陷的DNS服务器（ns.attack.net）。攻击者通过查询<a target="_blank" rel="noopener" href="http://www.attack.net,迫使本地域名服务器a和ns.attack.net通信,并使ns.attack.net回复针对/">www.attack.net，迫使本地域名服务器A和ns.attack.net通信，并使ns.attack.net回复针对</a>    <a target="_blank" rel="noopener" href="http://www.attack.net的查询,同时通过区域传送(zone/">www.attack.net的查询，同时通过区域传送（zone</a> transfer）的方式将错误的或篡改过的DNS信息（如，<a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a> &#x3D; 91.91.91.91）返回给本地域名服务器A。当其他用户向域名服务器A查询           <a target="_blank" rel="noopener" href="http://www.google.com时,服务器会返回91.91.91.91./">www.google.com时，服务器会返回91.91.91.91。</a></p>
+<p><strong>DNS缓存毒化</strong><br>    攻击者掌控有一个自己的域（attack.net）和一个已被攻陷的DNS服务器（ns.attack.net）。攻击者通过查询<a target="_blank" rel="noopener" href="http://www.attack.net,迫使本地域名服务器a和ns.attack.net通信,并使ns.attack.net回复针对/">www.attack.net，迫使本地域名服务器A和ns.attack.net通信，并使ns.attack.net回复针对</a>    <a target="_blank" rel="noopener" href="http://www.attack.net的查询,同时通过区域传送(zone/">www.attack.net的查询，同时通过区域传送（zone</a> transfer）的方式将错误的或篡改过的DNS信息（如，<a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a> &#x3D; 91.91.91.91）返回给本地域名服务器A。当其他用户向域名服务器A查询           <a href="http://www.google.com时，服务器会返回91.91.91.91。">www.google.com时，服务器会返回91.91.91.91。</a></p>
 <p><strong>DNS ID欺骗</strong><br>    DNS协议基于无状态的UDP，因此任何攻击者都可以发送伪造的响应包给请求者，而请求者无法判断该包是否合法。<br>    如果攻击者能够窃听到该DNS请求，比如攻击者和被攻击者在同一局域网，则攻击者能够获得DNS查询的ID号，从而可以构造合法的响应包，而其中的域名解析内容则是由攻击者来任意确定的。</p>
 <p><strong>基于DNS的DDOS攻击</strong><br>    攻击者利用僵尸网络发送大量伪造的查询请求至DNS服务器。这些查询请求包的源IP地址被设置为受害者的IP地址，因此DNS服务器会把响应信息发送给受害者。大量的响应信息会导致被攻击者的处理能力被占     用，从而形成DOS</p>
 <p><strong>2.HTTP</strong></p>
@@ -531,7 +531,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

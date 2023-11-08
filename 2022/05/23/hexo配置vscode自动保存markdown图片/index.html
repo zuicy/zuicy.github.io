@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://www.zuicy.party/images/2022-05-23-hexo%E9%85%8D%E7%BD%AEvscode%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98markdown%E5%9B%BE%E7%89%87_010236.png">
 <meta property="og:image" content="https://www.zuicy.party/images/2022-05-23-hexo%E9%85%8D%E7%BD%AEvscode%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98markdown%E5%9B%BE%E7%89%87_011438.png">
 <meta property="article:published_time" content="2022-05-22T16:12:53.000Z">
-<meta property="article:modified_time" content="2022-05-22T17:16:22.313Z">
+<meta property="article:modified_time" content="2023-11-08T08:55:15.888Z">
 <meta property="article:author" content="zuicy">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="vscode">
@@ -242,9 +242,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-05-23 00:12:53 / 修改时间：01:16:22" itemprop="dateCreated datePublished" datetime="2022-05-23T00:12:53+08:00">2022-05-23</time>
+      <time title="创建时间：2022-05-23 00:12:53" itemprop="dateCreated datePublished" datetime="2022-05-23T00:12:53+08:00">2022-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-08 16:55:15" itemprop="dateModified" datetime="2023-11-08T16:55:15+08:00">2023-11-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,7 +304,7 @@
 <p>但是现在还有一个问题，图片应该要保存到images文件夹中去，因此我们下一步是进行插件的配置。</p>
 <h1 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h1><p>首先，我的项目结构如下。</p>
 <p>我想将所有图像保存在blog&#x2F;source&#x2F;img，并将图像 url 插入文章。所以图片 url 应该是..&#x2F;images&#x2F;xxx.png。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">blog</span><br><span class="line">--source</span><br><span class="line">---- _post (存放md文档)</span><br><span class="line">---- images (存放图片)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">blog</span><br><span class="line">-- source</span><br><span class="line">---- _post (存放md文档)</span><br><span class="line">---- images (存放图片)</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <p>此时，我的插件配置文件如下(这里推荐使用工作区配置，不影响其他的地方)</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;pasteImage.basePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;projectRoot&#125;/source/_post&quot;</span><span class="punctuation">,</span> </span><br><span class="line">	<span class="attr">&quot;pasteImage.path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;projectRoot&#125;/source/images&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;pasteImage.namePrefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;currentFileNameWithoutExt&#125;_&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;pasteImage.defaultName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HHmmss&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -360,7 +366,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
