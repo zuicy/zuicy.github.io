@@ -1,3 +1,5 @@
+https://www.zuicy.party/2023/11/09/%E6%B8%B8%E6%88%8F%E5%8C%96%E3%80%8A%E4%BA%BA%E5%8D%87%E3%80%8BAPP%E6%94%BB%E7%95%A5-%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%A9%BA%E6%9C%89%E4%B8%8A%E8%BF%9B%E5%BF%83%E7%9A%84%E4%BA%BA%E5%8F%98%E6%88%90%E8%A1%8C%E5%8A%A8%E4%B8%8A%E7%9A%84%E5%B7%A8%E4%BA%BA/
+https://www.zuicy.party/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/
 https://www.zuicy.party/tags/index.html
 https://www.zuicy.party/2022/05/23/hexo%E9%85%8D%E7%BD%AEvscode%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98markdown%E5%9B%BE%E7%89%87/
 https://www.zuicy.party/categories/index.html
@@ -30,6 +32,10 @@ https://www.zuicy.party/tags/PHP/
 https://www.zuicy.party/tags/TeamSpeak%E6%90%AD%E5%BB%BA%E5%BC%80%E9%BB%91%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://www.zuicy.party/tags/hexo/
 https://www.zuicy.party/tags/vscode/
+https://www.zuicy.party/tags/lifeup/
+https://www.zuicy.party/tags/%E4%BA%BA%E5%8D%87/
+https://www.zuicy.party/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/
+https://www.zuicy.party/tags/Python/
 https://www.zuicy.party/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/
 https://www.zuicy.party/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/
 https://www.zuicy.party/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/
@@ -38,3 +44,6 @@ https://www.zuicy.party/categories/PHP/
 https://www.zuicy.party/categories/%E7%BF%BB%E5%A2%99/
 https://www.zuicy.party/categories/hexo/
 https://www.zuicy.party/categories/vscode/
+https://www.zuicy.party/categories/lifeup/
+https://www.zuicy.party/categories/lifeup/%E4%BA%BA%E5%8D%87/
+https://www.zuicy.party/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/

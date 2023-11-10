@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.zuicy.party","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"algolia":{"appID":"0WKOTIQBSM","apiKey":"de65ab0cf953c5c7e69441001f0cf7e4","indexName":"zuicyblog","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="最近写工具时需要快速执行大量sql，之前因为db操作不是很多，所以底层实现是每次执行sql的时候，都会去新建立一个链接，这次就直接拿来用了，最后发现大概每秒只能执行300-400个的sql（还可以更高，因为只起了10个线程，但是如果线程数太高db可能会拒绝访问），所以想要改用连接池看看速度能有多块，但是换成链接池后，反而速度立马变成了100个sql&#x2F;秒，当时还以为是连接池的配置不对，但是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python-pooledDB连接池性能问题">
+<meta property="og:url" content="https://www.zuicy.party/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="朱鱼鱼的小本本">
+<meta property="og:description" content="最近写工具时需要快速执行大量sql，之前因为db操作不是很多，所以底层实现是每次执行sql的时候，都会去新建立一个链接，这次就直接拿来用了，最后发现大概每秒只能执行300-400个的sql（还可以更高，因为只起了10个线程，但是如果线程数太高db可能会拒绝访问），所以想要改用连接池看看速度能有多块，但是换成链接池后，反而速度立马变成了100个sql&#x2F;秒，当时还以为是连接池的配置不对，但是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-16T13:37:19.000Z">
+<meta property="article:modified_time" content="2023-11-10T02:20:27.499Z">
+<meta property="article:author" content="zuicy">
+<meta property="article:tag" content="技术相关">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.zuicy.party/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.zuicy.party/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/","path":"2023/02/16/python-DBpool连接池性能问题/","title":"python-pooledDB连接池性能问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python-pooledDB连接池性能问题 | 朱鱼鱼的小本本</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://comments.zuicy.party">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">朱鱼鱼的小本本</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我好快乐，因为我是小熊软糖，小熊软糖~</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E6%97%B6%E6%80%A7%E8%83%BD%E5%8F%98%E5%B7%AE%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">并发时性能变差的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%96%E5%87%BAdb%E9%93%BE%E6%8E%A5%E6%97%B6%E9%9C%80%E8%A6%81%E5%8A%A0%E9%94%81%E6%B5%8B%E8%AF%95%E5%AD%98%E6%B4%BB%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">取出db链接时需要加锁测试存活性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E8%BF%98db%E8%BF%9E%E6%8E%A5%E6%97%B6%EF%BC%8C%E4%BC%9A%E5%AF%B9%E6%B2%A1%E5%85%B3%E6%9C%BA%E7%9A%84%E9%93%BE%E6%8E%A5%E8%BF%9B%E8%A1%8C%E5%9B%9E%E6%BB%9A"><span class="nav-number">1.2.</span> <span class="nav-text">归还db连接时，会对没关机的链接进行回滚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">解决办法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zuicy"
+      src="/images/1.jpg">
+  <p class="site-author-name" itemprop="name">zuicy</p>
+  <div class="site-description" itemprop="description">哼~</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zuicy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zuicy" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.zuicy.party/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="zuicy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="朱鱼鱼的小本本">
+      <meta itemprop="description" content="哼~">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python-pooledDB连接池性能问题 | 朱鱼鱼的小本本">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python-pooledDB连接池性能问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-16 21:37:19" itemprop="dateCreated datePublished" datetime="2023-02-16T21:37:19+08:00">2023-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-10 10:20:27" itemprop="dateModified" datetime="2023-11-10T10:20:27+08:00">2023-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">技术相关</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近写工具时需要快速执行大量sql，之前因为db操作不是很多，所以底层实现是每次执行sql的时候，都会去新建立一个链接，这次就直接拿来用了，最后发现大概每秒只能执行300-400个的sql（还可以更高，因为只起了10个线程，但是如果线程数太高db可能会拒绝访问），所以想要改用连接池看看速度能有多块，但是换成链接池后，反而速度立马变成了100个sql&#x2F;秒，当时还以为是连接池的配置不对，但是试了很多次都是这个速度，最后看了pooledDB的代码才知道对于高线程多并发的场景，pooledDB支持度有限。</p>
+<h1 id="并发时性能变差的原因"><a href="#并发时性能变差的原因" class="headerlink" title="并发时性能变差的原因"></a>并发时性能变差的原因</h1><h2 id="取出db链接时需要加锁测试存活性"><a href="#取出db链接时需要加锁测试存活性" class="headerlink" title="取出db链接时需要加锁测试存活性"></a>取出db链接时需要加锁测试存活性</h2><p>首先，为了保证多线程不出问题，在存取链接到池子里面的时候，会对池子加锁。</p>
+<p>而为了保证链接的可用性，在连接池取链接（pool.connection()）的时候，pooledDB还会用该链接ping一下（ping_check()），来测试是否链接还可用，确认可用后再将链接返回并解锁队列，此时下一个线程才能来队列中拿链接。</p>
+<p>因此在高并发的场景下，耗时一堆叠，就会越来越慢。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">connection</span>(<span class="params">self, shareable=<span class="literal">True</span></span>):</span><br><span class="line">    self._lock.acquire()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> (self._maxconnections</span><br><span class="line">                <span class="keyword">and</span> self._connections &gt;= self._maxconnections):</span><br><span class="line">            self._wait_lock()</span><br><span class="line">            con = self._idle_cache.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">except</span> IndexError:</span><br><span class="line">            con = self.steady_connection()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            con._ping_check()</span><br><span class="line">        con = PooledDedicatedDBConnection(self, con)</span><br><span class="line">        self._connections += <span class="number">1</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        self._lock.release()</span><br><span class="line">    <span class="keyword">return</span> con</span><br></pre></td></tr></table></figure>
+<p>因此，只要不让db去检查链接存活性就可以大幅提升取连接的速度（可以通过初始化时指定ping&#x3D;0来避免对连接的可用性进行检查）, 减少阻塞时间, 但是同时也会导致可能出现不可用的链接，需要逻辑对这种场景进行兼容。</p>
+<h2 id="归还db连接时，会对没关机的链接进行回滚"><a href="#归还db连接时，会对没关机的链接进行回滚" class="headerlink" title="归还db连接时，会对没关机的链接进行回滚"></a>归还db连接时，会对没关机的链接进行回滚</h2><p>除了取的时候会有问题，归还的时候，也会对pool的队列进行上锁，然后进行归还，pooledDB有个默认的操作，归还时进行reset，也就是回滚链接。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cache</span>(<span class="params">self, con</span>):</span><br><span class="line">    self._lock.acquire()</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self._maxcached <span class="keyword">or</span> <span class="built_in">len</span>(self._idle_cache) &lt; self._maxcached:</span><br><span class="line">        con._reset(force=self._reset)</span><br><span class="line">        self._idle_cache.append(con)</span><br><span class="line">    ...</span><br><span class="line">    self._lock.release()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_reset</span>(<span class="params">self, force=<span class="literal">False</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self._closed <span class="keyword">and</span> (force <span class="keyword">or</span> self._transaction):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.rollback()</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>如果大量的链接同时归还，也会出现耗时越来越长的问题，最终速度上不去。</p>
+<p>对于这个问题，可以在初始化时指定reset&#x3D;False，避免其强制性回滚。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>无论是ping&#x3D;0，还是reset&#x3D;False，虽然能解决速度问题，但是牺牲了pooledDB为连接带来的健壮性。</p>
+<p>因此最好的办法是创建多个链接池。把压力均摊到每个连接池上这样就可以在大量并发的同时，拥有更好的性能。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/" rel="tag"># 技术相关</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/23/hexo%E9%85%8D%E7%BD%AEvscode%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98markdown%E5%9B%BE%E7%89%87/" rel="prev" title="hexo配置vscode自动保存markdown图片">
+                  <i class="fa fa-angle-left"></i> hexo配置vscode自动保存markdown图片
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/11/09/%E6%B8%B8%E6%88%8F%E5%8C%96%E3%80%8A%E4%BA%BA%E5%8D%87%E3%80%8BAPP%E6%94%BB%E7%95%A5-%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%A9%BA%E6%9C%89%E4%B8%8A%E8%BF%9B%E5%BF%83%E7%9A%84%E4%BA%BA%E5%8F%98%E6%88%90%E8%A1%8C%E5%8A%A8%E4%B8%8A%E7%9A%84%E5%B7%A8%E4%BA%BA/" rel="next" title="游戏化《人升》APP攻略-从一个空有上进心的人变成行动上的巨人">
+                  游戏化《人升》APP攻略-从一个空有上进心的人变成行动上的巨人 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zuicy</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.20.0/dist/algoliasearch-lite.umd.js" integrity="sha256-DABVk+hYj0mdUzo+7ViJC6cwLahQIejFvC+my2M/wfM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.57.0/dist/instantsearch.production.min.js" integrity="sha256-foJtB+Wd0wvvK+VU3KO0/H6CjwSwJfB1RnWlgx0Ov9U=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.zuicy.party","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"请文明评论呀"},"emoji":["//unpkg.com/@waline/emojis@1.0.1/weibo","//unpkg.com/@waline/emojis@1.0.1/bilibili","//unpkg.com/@waline/emojis@1.0.1/tieba"],"el":"#waline","comment":true,"path":"/2023/02/16/python-DBpool%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
